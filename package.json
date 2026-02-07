@@ -1,0 +1,49 @@
+{
+  "name": "@istvanmolitor/vue-admin",
+  "version": "1.0.0",
+  "description": "Vue 3 + TypeScript admin components package",
+  "main": "./index.ts",
+  "type": "module",
+  "exports": {
+    ".": "./index.ts",
+    "./components/*": "./components/*",
+    "./composables/*": "./composables/*",
+    "./lib/*": "./lib/*",
+    "./types/*": "./types/*",
+    "./style.css": "./style.css"
+  },
+  "files": [
+    "components",
+    "composables",
+    "config",
+    "lib",
+    "types",
+    "assets",
+    "index.ts",
+    "style.css",
+    "README.md"
+  ],
+  "keywords": [
+    "vue",
+    "vue3",
+    "typescript",
+    "admin",
+    "components",
+    "ui"
+  ],
+  "author": "István Molitor",
+  "license": "MIT",
+  "peerDependencies": {
+    "vue": "^3.5.0",
+    "vue-router": "^4.6.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/istvanmolitor/vue-admin.git"
+  },
+  "bugs": {
+    "url": "https://github.com/istvanmolitor/vue-admin/issues"
+  },
+  "homepage": "https://github.com/istvanmolitor/vue-admin#readme"
+}
+
