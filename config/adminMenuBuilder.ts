@@ -5,8 +5,10 @@ export class AdminMenuBuilder extends MenuBuilder {
   build(menu: MenuItemConfig, menuName: string): MenuItemConfig {
     if (menuName === 'admin') {
       this.addMenuItem(menu, {
+        id: 'dashboard',
         title: 'Vezérlőpult',
-        path: 'dashboard'
+        path: '/',
+        order: 0
       })
     }
 
