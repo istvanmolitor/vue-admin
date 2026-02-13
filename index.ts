@@ -3,7 +3,7 @@ export { menuRegistry, getMenu, getMenuNames, findMenuItemById, useMenu, debugMe
 export type { MenuItemConfig, PackageMenuConfig, MenuBuilder } from '@menu/index'
 
 // Utils
-export { getBaseUrl } from './lib/utils'
+export { getBackandUrl } from './lib/utils'
 
 // Components
 export { default as AdminMenu } from './components/AdminMenu.vue'
