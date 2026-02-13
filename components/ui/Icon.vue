@@ -13,6 +13,7 @@ import {
   PenLine,
   LogOut,
   Users,
+  Trash2,
   type LucideIcon
 } from 'lucide-vue-next'
 
@@ -40,6 +41,7 @@ const iconMap: Record<string, LucideIcon> = {
   'pen-line': PenLine,
   logout: LogOut,
   users: Users,
+  trash: Trash2,
 }
 
 const iconComponent = computed(() => {
