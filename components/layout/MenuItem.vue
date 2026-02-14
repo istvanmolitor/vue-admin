@@ -31,7 +31,7 @@ const hasSubItems = computed(() => {
 })
 
 const isExpanded = computed(() => {
-  return props.expandedItems.has(props.item.id)
+  return props.item.id ? props.expandedItems.has(props.item.id) : false
 })
 
 const iconComponent = computed((): Component => {
@@ -45,20 +45,21 @@ const iconComponent = computed((): Component => {
 })
 
 const handleToggle = () => {
-  emit('toggle', props.item.id)
+  if (props.item.id) {
+    emit('toggle', props.item.id)
+  }
 }
 
 const iconSize = computed(() => {
-  return props.level === 0 ? 20 : 16
+  return props.level === 0 ? 18 : 16
 })
 
 const paddingClass = computed(() => {
-  const basePadding = props.level === 0 ? 'px-3 py-3' : 'px-3 py-2'
-  return basePadding
+  return props.level === 0 ? 'px-3 py-2' : 'px-3 py-1.5'
 })
 
 const marginClass = computed(() => {
-  return props.level > 0 ? 'ml-6 pl-2 border-l-2 border-[--color-border]/30' : ''
+  return props.level > 0 ? 'ml-4 pl-3 border-l border-border' : ''
 })
 </script>
 
@@ -69,19 +70,18 @@ const marginClass = computed(() => {
       <button
         @click="handleToggle"
         :class="[
-          'w-full flex items-center gap-3 rounded-xl text-[--color-muted-foreground] hover:bg-gradient-to-r hover:from-blue-500/10 hover:to-purple-500/10 hover:text-[--color-foreground] transition-all duration-200 hover:shadow-lg hover:scale-[1.02] group relative overflow-hidden',
+          'w-full flex items-center gap-2 rounded-lg text-sm font-medium transition-colors',
           paddingClass,
-          level === 0 ? '' : 'text-sm'
+          'text-muted-foreground hover:text-foreground hover:bg-accent'
         ]"
       >
-        <div class="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 opacity-0 group-hover:opacity-10 transition-opacity"></div>
-        <component :is="iconComponent" :size="iconSize" class="flex-shrink-0 relative z-10 group-hover:scale-110 transition-transform" />
-        <span v-if="!isCollapsed" class="font-medium relative z-10 flex-1 text-left">{{ item.title }}</span>
+        <component :is="iconComponent" :size="iconSize" class="shrink-0" />
+        <span v-if="!isCollapsed" class="flex-1 text-left">{{ item.title }}</span>
         <component
           v-if="!isCollapsed"
           :is="isExpanded ? ChevronUp : ChevronDown"
-          :size="16"
-          class="flex-shrink-0 relative z-10 transition-transform"
+          :size="14"
+          class="shrink-0"
         />
       </button>
 
@@ -113,22 +113,15 @@ const marginClass = computed(() => {
         :href="href"
         @click="navigate"
         :class="[
-          'flex items-center gap-3 rounded-xl transition-all duration-200 hover:shadow-lg hover:scale-[1.02] group relative overflow-hidden',
+          'flex items-center gap-2 rounded-lg text-sm font-medium transition-colors',
           paddingClass,
-          level === 0 ? '' : 'text-sm',
           isActive
-            ? 'bg-gradient-to-r from-blue-500/20 to-purple-500/20 text-[--color-foreground] font-semibold shadow-md'
-            : 'text-[--color-muted-foreground] hover:bg-gradient-to-r hover:from-blue-500/10 hover:to-purple-500/10 hover:text-[--color-foreground]'
+            ? 'bg-accent text-foreground'
+            : 'text-muted-foreground hover:text-foreground hover:bg-accent'
         ]"
       >
-        <div
-          :class="[
-            'absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 transition-opacity',
-            isActive ? 'opacity-15' : 'opacity-0 group-hover:opacity-10'
-          ]"
-        ></div>
-        <component :is="iconComponent" :size="iconSize" class="flex-shrink-0 relative z-10 group-hover:scale-110 transition-transform" />
-        <span v-if="!isCollapsed" class="font-medium relative z-10">{{ item.title }}</span>
+        <component :is="iconComponent" :size="iconSize" class="shrink-0" />
+        <span v-if="!isCollapsed">{{ item.title }}</span>
       </a>
     </RouterLink>
   </li>

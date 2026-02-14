@@ -40,13 +40,13 @@ onBeforeUnmount(() => {
   <div ref="dropdownRef" class="relative">
     <button
       @click="toggleMenu"
-      class="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-[--color-accent]/10 transition-colors"
+      class="flex items-center gap-2 p-2 rounded-md hover:bg-accent transition-colors"
       aria-label="Profile menu"
     >
-      <UserCircle :size="20" class="text-[--color-foreground]" />
+      <UserCircle :size="18" />
       <ChevronDown
-        :size="16"
-        class="text-[--color-muted-foreground] transition-transform"
+        :size="14"
+        class="text-muted-foreground transition-transform"
         :class="{ 'rotate-180': isOpen }"
       />
     </button>
@@ -62,16 +62,16 @@ onBeforeUnmount(() => {
     >
       <div
         v-if="isOpen"
-        class="absolute right-0 mt-2 w-56 rounded-lg bg-[--color-card] shadow-xl border border-[--color-border] overflow-hidden z-[500] isolate bg-white dark:bg-slate-950"
+        class="absolute right-0 mt-2 w-56 rounded-lg bg-card shadow-lg border border-border overflow-hidden z-[500]"
       >
         <div class="py-1">
           <button
             v-for="item in menuItems"
             :key="item.id"
             @click="navigateTo(item.path)"
-            class="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-[--color-foreground] hover:bg-[--color-accent]/10 transition-colors text-left"
+            class="w-full flex items-center gap-3 px-3 py-2 text-sm hover:bg-accent transition-colors text-left"
           >
-            <component v-if="item.icon" :is="item.icon" :size="18" class="text-[--color-muted-foreground]" />
+            <component v-if="item.icon" :is="item.icon" :size="16" class="text-muted-foreground" />
             <span>{{ item.title }}</span>
           </button>
         </div>

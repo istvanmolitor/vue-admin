@@ -9,7 +9,7 @@ const props = defineProps<CardProps>()
 </script>
 
 <template>
-  <div :class="cn('rounded-2xl border border-[--color-border]/50 bg-[--color-card]/80 backdrop-blur-sm text-[--color-card-foreground] shadow-lg hover:shadow-xl transition-shadow duration-300', props.class)">
+  <div :class="cn('rounded-lg border border-border bg-card text-card-foreground shadow-sm', props.class)">
     <slot />
   </div>
 </template>

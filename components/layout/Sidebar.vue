@@ -32,7 +32,10 @@ const expandActiveParents = () => {
 
   const findAndExpandParents = (items: MenuItemConfig[], parentIds: string[] = []): boolean => {
     for (const item of items) {
-      const newParentIds = [...parentIds, item.id]
+      if (!item.id) continue
+
+      // Non-null assertion - we've already checked item.id exists
+      const newParentIds: string[] = [...parentIds, item.id!]
 
       // Check if this item's path matches current route
       if (item.path === currentPath) {
@@ -79,25 +82,25 @@ watch(() => route.path, () => {
 <template>
   <aside
     :class="[
-      'bg-[--color-card]/80 backdrop-blur-xl border-r border-[--color-border]/50 transition-all duration-300 flex flex-col shadow-2xl',
+      'bg-background border-r border-border transition-all duration-200 flex flex-col',
       isCollapsed ? 'w-16' : 'w-64'
     ]"
   >
     <!-- Sidebar Header -->
-    <div class="p-4 border-b border-[--color-border]/50 flex items-center justify-between relative overflow-hidden">
-      <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-purple-500/10"></div>
-      <h2 v-if="!isCollapsed" class="text-xl font-bold text-[--color-foreground] relative z-10 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Dashboard</h2>
+    <div class="h-14 px-4 border-b border-border flex items-center justify-between">
+      <h2 v-if="!isCollapsed" class="text-sm font-semibold tracking-tight">Dashboard</h2>
       <button
         @click="toggleSidebar"
-        class="p-2 rounded-lg hover:bg-[--color-accent] transition-all duration-200 hover:scale-110 relative z-10 group"
+        class="p-1.5 rounded-md hover:bg-accent transition-colors"
+        :class="{ 'mx-auto': isCollapsed }"
       >
-        <ChevronLeft v-if="!isCollapsed" :size="20" class="group-hover:animate-pulse" />
-        <ChevronRight v-if="isCollapsed" :size="20" class="group-hover:animate-pulse" />
+        <ChevronLeft v-if="!isCollapsed" :size="16" class="text-muted-foreground" />
+        <ChevronRight v-if="isCollapsed" :size="16" class="text-muted-foreground" />
       </button>
     </div>
 
     <!-- Navigation -->
-    <nav class="flex-1 p-4 overflow-y-auto">
+    <nav class="flex-1 p-3 overflow-y-auto">
       <ul class="space-y-1">
         <MenuItem
           v-for="item in menuItems"
@@ -112,14 +115,14 @@ watch(() => route.path, () => {
     </nav>
 
     <!-- User Section -->
-    <div class="p-4 border-t border-[--color-border]/50 bg-gradient-to-r from-blue-500/5 to-purple-500/5">
-      <div class="flex items-center gap-3 hover:bg-[--color-accent]/50 p-2 rounded-xl transition-all duration-200 cursor-pointer group">
-        <div class="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white font-semibold shadow-lg group-hover:scale-110 transition-transform ring-2 ring-blue-500/20">
+    <div class="p-3 border-t border-border">
+      <div class="flex items-center gap-3 hover:bg-accent p-2 rounded-lg transition-colors cursor-pointer">
+        <div class="w-8 h-8 rounded-full bg-muted flex items-center justify-center text-xs font-medium">
           A
         </div>
-        <div v-if="!isCollapsed" class="flex-1">
-          <p class="text-sm font-semibold text-[--color-foreground]">Admin User</p>
-          <p class="text-xs text-[--color-muted-foreground]">admin@example.com</p>
+        <div v-if="!isCollapsed" class="flex-1 min-w-0">
+          <p class="text-sm font-medium truncate">Admin User</p>
+          <p class="text-xs text-muted-foreground truncate">admin@example.com</p>
         </div>
       </div>
     </div>

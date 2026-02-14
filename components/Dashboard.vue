@@ -48,30 +48,29 @@ const recentActivities = [
 
 <template>
   <DashboardLayout>
-    <div class="space-y-8">
+    <div class="max-w-7xl mx-auto space-y-8">
       <!-- Page Header -->
-      <div class="relative">
-        <h1 class="text-4xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent animate-gradient">Dashboard</h1>
-        <p class="text-[--color-muted-foreground] mt-2 text-lg">Üdvözöljük a vezérlőpulton! 👋</p>
+      <div>
+        <h1 class="text-3xl font-bold tracking-tight">Dashboard</h1>
+        <p class="text-muted-foreground mt-1">Üdvözöljük a vezérlőpulton</p>
       </div>
 
       <!-- Stats Grid -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <Card v-for="stat in stats" :key="stat.title" class="hover:shadow-2xl hover:scale-[1.02] transition-all duration-300 cursor-pointer group overflow-hidden relative">
-          <div class="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-purple-500/5 to-pink-500/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-          <CardContent class="p-6 relative z-10">
-            <div class="flex items-center justify-between">
-              <div class="flex-1">
-                <p class="text-sm font-semibold text-[--color-muted-foreground] uppercase tracking-wide">{{ stat.title }}</p>
-                <h3 class="text-3xl font-bold text-[--color-foreground] mt-3 group-hover:scale-105 transition-transform">{{ stat.value }}</h3>
-                <div class="flex items-center gap-1 mt-2">
-                  <TrendingUp :size="14" class="text-green-600" />
-                  <p class="text-sm font-semibold text-green-600">{{ stat.change }}</p>
-                  <span class="text-xs text-[--color-muted-foreground]">vs előző hónap</span>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <Card v-for="stat in stats" :key="stat.title" class="hover:shadow-md transition-shadow">
+          <CardContent class="p-6">
+            <div class="flex items-start justify-between">
+              <div class="space-y-1">
+                <p class="text-sm font-medium text-muted-foreground">{{ stat.title }}</p>
+                <h3 class="text-2xl font-bold tracking-tight">{{ stat.value }}</h3>
+                <div class="flex items-center gap-1 text-xs">
+                  <TrendingUp :size="12" class="text-emerald-600" />
+                  <span class="font-medium text-emerald-600">{{ stat.change }}</span>
+                  <span class="text-muted-foreground">vs előző hónap</span>
                 </div>
               </div>
-              <div :class="['p-4 rounded-2xl bg-gradient-to-br shadow-lg group-hover:scale-110 group-hover:rotate-6 transition-all duration-300', stat.color === 'text-green-600' ? 'from-green-500 to-emerald-600' : stat.color === 'text-blue-600' ? 'from-blue-500 to-cyan-600' : stat.color === 'text-purple-600' ? 'from-purple-500 to-pink-600' : 'from-orange-500 to-red-600']">
-                <component :is="stat.icon" :size="28" class="text-white" />
+              <div class="p-2.5 rounded-lg bg-muted">
+                <component :is="stat.icon" :size="20" class="text-muted-foreground" />
               </div>
             </div>
           </CardContent>
@@ -81,31 +80,30 @@ const recentActivities = [
       <!-- Content Grid -->
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <!-- Chart Card -->
-        <Card class="hover:shadow-xl transition-all duration-300 overflow-hidden">
-          <CardHeader class="bg-gradient-to-r from-blue-500/5 to-purple-500/5">
-            <CardTitle class="flex items-center gap-2">
-              <BarChart3 :size="20" class="text-blue-600" />
+        <Card>
+          <CardHeader>
+            <CardTitle class="flex items-center gap-2 text-base">
+              <BarChart3 :size="18" />
               Értékesítési áttekintés
             </CardTitle>
             <CardDescription>Havi értékesítési adatok</CardDescription>
           </CardHeader>
           <CardContent>
-            <div class="h-64 flex items-center justify-center bg-gradient-to-br from-blue-500/5 via-purple-500/5 to-pink-500/5 rounded-xl relative overflow-hidden group">
-              <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTSAwIDEwIEwgNDAgMTAgTSAxMCAwIEwgMTAgNDAgTSAwIDIwIEwgNDAgMjAgTSAyMCAwIEwgMjAgNDAgTSAwIDMwIEwgNDAgMzAgTSAzMCAwIEwgMzAgNDAiIGZpbGw9Im5vbmUiIHN0cm9rZT0icmdiYSgwLDAsMCwwLjAzKSIgc3Ryb2tlLXdpZHRoPSIxIi8+PC9wYXR0ZXJuPjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2dyaWQpIi8+PC9zdmc+')] opacity-50"></div>
-              <div class="text-center relative z-10">
-                <BarChart3 :size="48" class="mx-auto text-blue-500 mb-3 group-hover:scale-110 transition-transform" />
-                <p class="text-[--color-muted-foreground] font-medium">Diagram helye</p>
-                <p class="text-sm text-[--color-muted-foreground]">Integráljon chart library-t</p>
+            <div class="h-64 flex items-center justify-center bg-muted/50 rounded-lg">
+              <div class="text-center">
+                <BarChart3 :size="40" class="mx-auto mb-2 text-muted-foreground" />
+                <p class="text-sm text-muted-foreground">Diagram helye</p>
+                <p class="text-xs text-muted-foreground">Integráljon chart library-t</p>
               </div>
             </div>
           </CardContent>
         </Card>
 
         <!-- Recent Activity -->
-        <Card class="hover:shadow-xl transition-all duration-300">
-          <CardHeader class="bg-gradient-to-r from-purple-500/5 to-pink-500/5">
-            <CardTitle class="flex items-center gap-2">
-              <Users :size="20" class="text-purple-600" />
+        <Card>
+          <CardHeader>
+            <CardTitle class="flex items-center gap-2 text-base">
+              <Users :size="18" />
               Legutóbbi tevékenységek
             </CardTitle>
             <CardDescription>A legfrissebb felhasználói események</CardDescription>
@@ -115,16 +113,16 @@ const recentActivities = [
               <div
                 v-for="activity in recentActivities"
                 :key="activity.time"
-                class="flex items-center gap-3 p-3 rounded-xl hover:bg-gradient-to-r hover:from-purple-500/10 hover:to-pink-500/10 transition-all duration-200 hover:scale-[1.02] cursor-pointer group border border-transparent hover:border-purple-500/20"
+                class="flex items-center gap-3 p-3 rounded-lg hover:bg-accent transition-colors cursor-pointer"
               >
-                <div class="w-10 h-10 rounded-full bg-gradient-to-br from-purple-500 to-pink-600 flex items-center justify-center text-white font-semibold shadow-md group-hover:scale-110 transition-transform text-sm">
+                <div class="w-8 h-8 rounded-full bg-muted flex items-center justify-center text-xs font-medium">
                   {{ activity.user.split(' ').map(n => n[0]).join('') }}
                 </div>
-                <div class="flex-1">
-                  <p class="font-semibold text-[--color-foreground] text-sm">{{ activity.user }}</p>
-                  <p class="text-xs text-[--color-muted-foreground]">{{ activity.action }}</p>
+                <div class="flex-1 min-w-0">
+                  <p class="text-sm font-medium truncate">{{ activity.user }}</p>
+                  <p class="text-xs text-muted-foreground truncate">{{ activity.action }}</p>
                 </div>
-                <span class="text-xs text-[--color-muted-foreground] bg-[--color-muted] px-2 py-1 rounded-full">{{ activity.time }}</span>
+                <span class="text-xs text-muted-foreground">{{ activity.time }}</span>
               </div>
             </div>
           </CardContent>
@@ -132,10 +130,10 @@ const recentActivities = [
       </div>
 
       <!-- Full Width Card -->
-      <Card class="hover:shadow-xl transition-all duration-300">
-        <CardHeader class="bg-gradient-to-r from-blue-500/5 via-purple-500/5 to-pink-500/5">
-          <CardTitle class="flex items-center gap-2">
-            <LayoutDashboard :size="20" class="text-blue-600" />
+      <Card>
+        <CardHeader>
+          <CardTitle class="flex items-center gap-2 text-base">
+            <LayoutDashboard :size="18" />
             Projekt áttekintés
           </CardTitle>
           <CardDescription>Aktuális projektek és státuszok</CardDescription>
@@ -144,52 +142,52 @@ const recentActivities = [
           <div class="overflow-x-auto">
             <table class="w-full">
               <thead>
-                <tr class="border-b-2 border-[--color-border]">
-                  <th class="text-left py-4 px-4 text-sm font-bold text-[--color-foreground] uppercase tracking-wide">Projekt</th>
-                  <th class="text-left py-4 px-4 text-sm font-bold text-[--color-foreground] uppercase tracking-wide">Státusz</th>
-                  <th class="text-left py-4 px-4 text-sm font-bold text-[--color-foreground] uppercase tracking-wide">Előrehaladás</th>
-                  <th class="text-left py-4 px-4 text-sm font-bold text-[--color-foreground] uppercase tracking-wide">Határidő</th>
+                <tr class="border-b border-border">
+                  <th class="text-left py-3 px-4 text-xs font-medium text-muted-foreground uppercase tracking-wider">Projekt</th>
+                  <th class="text-left py-3 px-4 text-xs font-medium text-muted-foreground uppercase tracking-wider">Státusz</th>
+                  <th class="text-left py-3 px-4 text-xs font-medium text-muted-foreground uppercase tracking-wider">Előrehaladás</th>
+                  <th class="text-left py-3 px-4 text-xs font-medium text-muted-foreground uppercase tracking-wider">Határidő</th>
                 </tr>
               </thead>
               <tbody>
-                <tr class="border-b border-[--color-border] hover:bg-gradient-to-r hover:from-blue-500/5 hover:to-purple-500/5 transition-all duration-200 group">
-                  <td class="py-4 px-4 text-sm font-semibold">Weboldal újratervezés</td>
-                  <td class="py-4 px-4"><span class="px-3 py-1.5 rounded-full text-xs font-semibold bg-gradient-to-r from-green-500 to-emerald-600 text-white shadow-md">Folyamatban</span></td>
-                  <td class="py-4 px-4">
+                <tr class="border-b border-border hover:bg-accent/50 transition-colors">
+                  <td class="py-3 px-4 text-sm font-medium">Weboldal újratervezés</td>
+                  <td class="py-3 px-4"><span class="inline-flex items-center px-2.5 py-0.5 rounded-md text-xs font-medium bg-emerald-50 text-emerald-700 border border-emerald-200">Folyamatban</span></td>
+                  <td class="py-3 px-4">
                     <div class="flex items-center gap-2">
-                      <div class="flex-1 h-2 bg-[--color-muted] rounded-full overflow-hidden">
-                        <div class="h-full bg-gradient-to-r from-green-500 to-emerald-600 rounded-full" style="width: 75%"></div>
+                      <div class="flex-1 h-2 bg-muted rounded-full overflow-hidden">
+                        <div class="h-full bg-foreground rounded-full" style="width: 75%"></div>
                       </div>
-                      <span class="text-sm font-semibold text-green-600">75%</span>
+                      <span class="text-xs font-medium text-muted-foreground">75%</span>
                     </div>
                   </td>
-                  <td class="py-4 px-4 text-sm text-[--color-muted-foreground]">2026. feb. 15.</td>
+                  <td class="py-3 px-4 text-sm text-muted-foreground">2026. feb. 15.</td>
                 </tr>
-                <tr class="border-b border-[--color-border] hover:bg-gradient-to-r hover:from-blue-500/5 hover:to-purple-500/5 transition-all duration-200 group">
-                  <td class="py-4 px-4 text-sm font-semibold">Mobil alkalmazás</td>
-                  <td class="py-4 px-4"><span class="px-3 py-1.5 rounded-full text-xs font-semibold bg-gradient-to-r from-blue-500 to-cyan-600 text-white shadow-md">Tervezés</span></td>
-                  <td class="py-4 px-4">
+                <tr class="border-b border-border hover:bg-accent/50 transition-colors">
+                  <td class="py-3 px-4 text-sm font-medium">Mobil alkalmazás</td>
+                  <td class="py-3 px-4"><span class="inline-flex items-center px-2.5 py-0.5 rounded-md text-xs font-medium bg-blue-50 text-blue-700 border border-blue-200">Tervezés</span></td>
+                  <td class="py-3 px-4">
                     <div class="flex items-center gap-2">
-                      <div class="flex-1 h-2 bg-[--color-muted] rounded-full overflow-hidden">
-                        <div class="h-full bg-gradient-to-r from-blue-500 to-cyan-600 rounded-full" style="width: 30%"></div>
+                      <div class="flex-1 h-2 bg-muted rounded-full overflow-hidden">
+                        <div class="h-full bg-foreground rounded-full" style="width: 30%"></div>
                       </div>
-                      <span class="text-sm font-semibold text-blue-600">30%</span>
+                      <span class="text-xs font-medium text-muted-foreground">30%</span>
                     </div>
                   </td>
-                  <td class="py-4 px-4 text-sm text-[--color-muted-foreground]">2026. márc. 01.</td>
+                  <td class="py-3 px-4 text-sm text-muted-foreground">2026. márc. 01.</td>
                 </tr>
-                <tr class="border-b border-[--color-border] hover:bg-gradient-to-r hover:from-blue-500/5 hover:to-purple-500/5 transition-all duration-200 group">
-                  <td class="py-4 px-4 text-sm font-semibold">API integráció</td>
-                  <td class="py-4 px-4"><span class="px-3 py-1.5 rounded-full text-xs font-semibold bg-gradient-to-r from-yellow-500 to-orange-600 text-white shadow-md">Felülvizsgálat</span></td>
-                  <td class="py-4 px-4">
+                <tr class="border-b border-border hover:bg-accent/50 transition-colors">
+                  <td class="py-3 px-4 text-sm font-medium">API integráció</td>
+                  <td class="py-3 px-4"><span class="inline-flex items-center px-2.5 py-0.5 rounded-md text-xs font-medium bg-amber-50 text-amber-700 border border-amber-200">Felülvizsgálat</span></td>
+                  <td class="py-3 px-4">
                     <div class="flex items-center gap-2">
-                      <div class="flex-1 h-2 bg-[--color-muted] rounded-full overflow-hidden">
-                        <div class="h-full bg-gradient-to-r from-yellow-500 to-orange-600 rounded-full" style="width: 90%"></div>
+                      <div class="flex-1 h-2 bg-muted rounded-full overflow-hidden">
+                        <div class="h-full bg-foreground rounded-full" style="width: 90%"></div>
                       </div>
-                      <span class="text-sm font-semibold text-orange-600">90%</span>
+                      <span class="text-xs font-medium text-muted-foreground">90%</span>
                     </div>
                   </td>
-                  <td class="py-4 px-4 text-sm text-[--color-muted-foreground]">2026. jan. 30.</td>
+                  <td class="py-3 px-4 text-sm text-muted-foreground">2026. jan. 30.</td>
                 </tr>
               </tbody>
             </table>
