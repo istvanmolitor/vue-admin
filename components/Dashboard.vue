@@ -152,11 +152,11 @@ const recentActivities = [
               <tbody>
                 <tr class="border-b border-border hover:bg-accent/50 transition-colors">
                   <td class="py-3 px-4 text-sm font-medium">Weboldal újratervezés</td>
-                  <td class="py-3 px-4"><span class="inline-flex items-center px-2.5 py-0.5 rounded-md text-xs font-medium bg-emerald-50 text-emerald-700 border border-emerald-200">Folyamatban</span></td>
+                  <td class="py-3 px-4"><span class="inline-flex items-center px-2.5 py-0.5 rounded-md text-xs font-medium bg-emerald-100 text-emerald-800 dark:bg-emerald-900/30 dark:text-emerald-400">Folyamatban</span></td>
                   <td class="py-3 px-4">
                     <div class="flex items-center gap-2">
                       <div class="flex-1 h-2 bg-muted rounded-full overflow-hidden">
-                        <div class="h-full bg-foreground rounded-full" style="width: 75%"></div>
+                        <div class="h-full bg-primary rounded-full" style="width: 75%"></div>
                       </div>
                       <span class="text-xs font-medium text-muted-foreground">75%</span>
                     </div>
@@ -165,11 +165,11 @@ const recentActivities = [
                 </tr>
                 <tr class="border-b border-border hover:bg-accent/50 transition-colors">
                   <td class="py-3 px-4 text-sm font-medium">Mobil alkalmazás</td>
-                  <td class="py-3 px-4"><span class="inline-flex items-center px-2.5 py-0.5 rounded-md text-xs font-medium bg-blue-50 text-blue-700 border border-blue-200">Tervezés</span></td>
+                  <td class="py-3 px-4"><span class="inline-flex items-center px-2.5 py-0.5 rounded-md text-xs font-medium bg-primary/10 text-primary">Tervezés</span></td>
                   <td class="py-3 px-4">
                     <div class="flex items-center gap-2">
                       <div class="flex-1 h-2 bg-muted rounded-full overflow-hidden">
-                        <div class="h-full bg-foreground rounded-full" style="width: 30%"></div>
+                        <div class="h-full bg-primary rounded-full" style="width: 30%"></div>
                       </div>
                       <span class="text-xs font-medium text-muted-foreground">30%</span>
                     </div>
@@ -178,11 +178,11 @@ const recentActivities = [
                 </tr>
                 <tr class="border-b border-border hover:bg-accent/50 transition-colors">
                   <td class="py-3 px-4 text-sm font-medium">API integráció</td>
-                  <td class="py-3 px-4"><span class="inline-flex items-center px-2.5 py-0.5 rounded-md text-xs font-medium bg-amber-50 text-amber-700 border border-amber-200">Felülvizsgálat</span></td>
+                  <td class="py-3 px-4"><span class="inline-flex items-center px-2.5 py-0.5 rounded-md text-xs font-medium bg-amber-100 text-amber-800 dark:bg-amber-900/30 dark:text-amber-400">Felülvizsgálat</span></td>
                   <td class="py-3 px-4">
                     <div class="flex items-center gap-2">
                       <div class="flex-1 h-2 bg-muted rounded-full overflow-hidden">
-                        <div class="h-full bg-foreground rounded-full" style="width: 90%"></div>
+                        <div class="h-full bg-primary rounded-full" style="width: 90%"></div>
                       </div>
                       <span class="text-xs font-medium text-muted-foreground">90%</span>
                     </div>

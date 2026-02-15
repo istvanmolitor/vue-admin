@@ -61,7 +61,7 @@ const { menuItems, hasChildren } = useMenu('admin')
   align-items: center;
   padding: 0.75rem 1rem;
   font-weight: 600;
-  color: #374151;
+  color: hsl(var(--color-foreground));
 }
 
 .menu-link {
@@ -69,19 +69,20 @@ const { menuItems, hasChildren } = useMenu('admin')
   align-items: center;
   padding: 0.75rem 1rem;
   text-decoration: none;
-  color: #6b7280;
+  color: hsl(var(--color-muted-foreground));
   transition: all 0.2s;
   border-radius: 0.375rem;
 }
 
 .menu-link:hover {
-  background-color: #f3f4f6;
-  color: #111827;
+  background-color: hsl(var(--color-accent));
+  color: hsl(var(--color-accent-foreground));
 }
 
 .menu-link.router-link-active {
-  background-color: #eff6ff;
-  color: #2563eb;
+  background-color: hsl(var(--color-primary) / 0.1);
+  color: hsl(var(--color-primary));
+  font-weight: 500;
 }
 
 .menu-icon {

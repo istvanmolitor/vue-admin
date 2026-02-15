@@ -25,7 +25,7 @@ import {
   GripVertical,
   MoveUp,
   MoveDown,
-  type LucideIcon
+  type LucideIcon, Cog
 } from 'lucide-vue-next'
 
 interface IconProps {
