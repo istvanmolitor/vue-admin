@@ -14,6 +14,17 @@ import {
   LogOut,
   Users,
   Trash2,
+  Type,
+  Heading1,
+  Image,
+  Video,
+  Code,
+  Quote,
+  List,
+  Settings,
+  GripVertical,
+  MoveUp,
+  MoveDown,
   type LucideIcon
 } from 'lucide-vue-next'
 
@@ -42,18 +53,34 @@ const iconMap: Record<string, LucideIcon> = {
   logout: LogOut,
   users: Users,
   trash: Trash2,
+  type: Type,
+  heading: Heading1,
+  image: Image,
+  video: Video,
+  code: Code,
+  quote: Quote,
+  list: List,
+  settings: Settings,
+  'grip-vertical': GripVertical,
+  'move-up': MoveUp,
+  'move-down': MoveDown,
 }
 
 const iconComponent = computed(() => {
   return iconMap[props.name] || Plus
+})
+
+// Check if class contains Tailwind width/height utilities
+const hasClassSize = computed(() => {
+  const classString = Array.isArray(props.class) ? props.class.join(' ') : props.class
+  return /\b(w-\d+|h-\d+)\b/.test(classString)
 })
 </script>
 
 <template>
   <component
     :is="iconComponent"
-    :size="size"
-    :class="props.class"
+    v-bind="hasClassSize ? { class: props.class } : { size: props.size, class: props.class }"
   />
 </template>
 
