@@ -12,4 +12,5 @@ export { default as EditButton } from './components/ui/EditButton.vue'
 export { default as DeleteButton } from './components/ui/DeleteButton.vue'
 export { default as RowActions } from './components/ui/RowActions.vue'
 export { default as ConfirmDialog } from './components/ui/ConfirmDialog.vue'
+export { default as FieldError } from './components/ui/FieldError.vue'
 
