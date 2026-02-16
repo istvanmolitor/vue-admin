@@ -25,7 +25,8 @@ import {
   GripVertical,
   MoveUp,
   MoveDown,
-  type LucideIcon, Cog
+  Eye,
+  type LucideIcon
 } from 'lucide-vue-next'
 
 interface IconProps {
@@ -64,6 +65,7 @@ const iconMap: Record<string, LucideIcon> = {
   'grip-vertical': GripVertical,
   'move-up': MoveUp,
   'move-down': MoveDown,
+  eye: Eye,
 }
 
 const iconComponent = computed(() => {

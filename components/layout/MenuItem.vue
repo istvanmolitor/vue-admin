@@ -70,9 +70,9 @@ const marginClass = computed(() => {
       <button
         @click="handleToggle"
         :class="[
-          'w-full flex items-center gap-2 rounded-lg text-sm font-medium transition-colors',
+          'w-full flex items-center gap-2 rounded-lg text-sm font-medium transition-colors menu-item-btn',
           paddingClass,
-          'text-muted-foreground hover:text-foreground hover:bg-accent'
+          'text-muted-foreground hover:text-foreground'
         ]"
       >
         <component :is="iconComponent" :size="iconSize" class="shrink-0" />
@@ -113,11 +113,11 @@ const marginClass = computed(() => {
         :href="href"
         @click="navigate"
         :class="[
-          'flex items-center gap-2 rounded-lg text-sm font-medium transition-colors',
+          'flex items-center gap-2 rounded-lg text-sm font-medium transition-colors menu-item-link',
           paddingClass,
           isActive
-            ? 'bg-accent text-foreground'
-            : 'text-muted-foreground hover:text-foreground hover:bg-accent'
+            ? 'text-foreground menu-item-active'
+            : 'text-muted-foreground hover:text-foreground'
         ]"
       >
         <component :is="iconComponent" :size="iconSize" class="shrink-0" />
@@ -126,3 +126,15 @@ const marginClass = computed(() => {
     </RouterLink>
   </li>
 </template>
+
+<style scoped>
+.menu-item-btn:hover,
+.menu-item-link:hover {
+  background-color: hsl(var(--color-sidebar-hover));
+}
+
+.menu-item-active {
+  background-color: hsl(var(--color-sidebar-hover));
+}
+</style>
+

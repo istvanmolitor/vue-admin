@@ -1,10 +1,30 @@
 @import "tailwindcss";
 
+:root {
+  /* Light mode - Custom blue colors for header and sidebar */
+  --color-header-bg: 217 91% 60%;
+  --color-header-foreground: 0 0% 100%;
+  --color-sidebar-bg: 220 26% 96%;
+  --color-sidebar-foreground: 222 47% 11%;
+  --color-sidebar-hover: 214 95% 93%;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* Dark mode - Custom blue colors for header and sidebar */
+    --color-header-bg: 217 50% 25%;
+    --color-header-foreground: 210 40% 98%;
+    --color-sidebar-bg: 220 40% 15%;
+    --color-sidebar-foreground: 210 40% 98%;
+    --color-sidebar-hover: 217 40% 22%;
+  }
+}
+
 @theme {
   /* Light mode - Modern blue theme with clean, professional look */
   --color-background: 210 40% 98%;
   --color-foreground: 222 47% 11%;
-  --color-card: 0 0% 100%;
+  --color-card: 214 100% 97%;
   --color-card-foreground: 222 47% 11%;
   --color-popover: 0 0% 100%;
   --color-popover-foreground: 222 47% 11%;
@@ -18,7 +38,7 @@
   --color-accent-foreground: 217 91% 60%;
   --color-destructive: 0 84% 60%;
   --color-destructive-foreground: 0 0% 100%;
-  --color-border: 214 32% 91%;
+  --color-border: 214 60% 85%;
   --color-input: 214 32% 91%;
   --color-ring: 217 91% 60%;
   --radius: 0.5rem;
@@ -34,7 +54,7 @@
     /* Dark mode - Modern blue-slate theme for premium feel */
     --color-background: 222 47% 11%;
     --color-foreground: 210 40% 98%;
-    --color-card: 217 33% 17%;
+    --color-card: 217 40% 20%;
     --color-card-foreground: 210 40% 98%;
     --color-popover: 217 33% 17%;
     --color-popover-foreground: 210 40% 98%;
@@ -48,7 +68,7 @@
     --color-accent-foreground: 217 91% 60%;
     --color-destructive: 0 63% 31%;
     --color-destructive-foreground: 210 40% 98%;
-    --color-border: 215 28% 24%;
+    --color-border: 217 40% 30%;
     --color-input: 215 28% 24%;
     --color-ring: 217 91% 60%;
     --color-chart-1: 217 91% 60%;
@@ -78,6 +98,48 @@
 
 ::-webkit-scrollbar-thumb:hover {
   background: hsl(var(--color-primary) / 0.5);
+}
+
+/* Custom blue header and sidebar styles */
+.header-blue {
+  background-color: hsl(var(--color-sidebar-bg));
+  color: hsl(var(--color-sidebar-foreground));
+  border-color: hsl(214 60% 85%);
+}
+
+@media (prefers-color-scheme: dark) {
+  .header-blue {
+    border-color: hsl(217 40% 30%);
+  }
+}
+
+.sidebar-blue {
+  background-color: hsl(var(--color-sidebar-bg));
+  color: hsl(var(--color-sidebar-foreground));
+}
+
+.sidebar-border {
+  border-color: hsl(214 60% 85%);
+}
+
+@media (prefers-color-scheme: dark) {
+  .sidebar-border {
+    border-color: hsl(217 40% 30%);
+  }
+}
+
+.card-blue {
+  background-color: hsl(214 100% 97%);
+  color: hsl(222 47% 11%);
+  border-color: hsl(214 60% 85%);
+}
+
+@media (prefers-color-scheme: dark) {
+  .card-blue {
+    background-color: hsl(217 40% 20%);
+    color: hsl(210 40% 98%);
+    border-color: hsl(217 40% 30%);
+  }
 }
 
 

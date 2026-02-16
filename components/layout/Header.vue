@@ -14,11 +14,11 @@ const goToSettings = () => {
 </script>
 
 <template>
-  <header class="h-14 bg-background border-b border-border px-6 flex items-center justify-end">
+  <header class="h-14 border-b px-6 flex items-center justify-end header-blue">
     <!-- Actions -->
     <div class="flex items-center gap-1">
 
-      <Button @click="goToSettings">
+      <Button @click="goToSettings" class="hover:bg-black/5">
         <Icon name="settings" />
       </Button>
 

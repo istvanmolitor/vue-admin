@@ -40,13 +40,13 @@ onBeforeUnmount(() => {
   <div ref="dropdownRef" class="relative">
     <button
       @click="toggleMenu"
-      class="flex items-center gap-2 p-2 rounded-md hover:bg-accent transition-colors"
+      class="flex items-center gap-2 p-2 rounded-md transition-colors profile-menu-btn"
       aria-label="Profile menu"
     >
       <UserCircle :size="18" />
       <ChevronDown
         :size="14"
-        class="text-muted-foreground transition-transform"
+        class="transition-transform"
         :class="{ 'rotate-180': isOpen }"
       />
     </button>
@@ -79,3 +79,16 @@ onBeforeUnmount(() => {
     </Transition>
   </div>
 </template>
+
+<style scoped>
+.profile-menu-btn:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+@media (prefers-color-scheme: dark) {
+  .profile-menu-btn:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+}
+</style>
+

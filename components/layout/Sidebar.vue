@@ -82,16 +82,16 @@ watch(() => route.path, () => {
 <template>
   <aside
     :class="[
-      'bg-background border-r border-border transition-all duration-200 flex flex-col',
+      'border-r transition-all duration-200 flex flex-col sidebar-blue sidebar-border',
       isCollapsed ? 'w-16' : 'w-64'
     ]"
   >
     <!-- Sidebar Header -->
-    <div class="h-14 px-4 border-b border-border flex items-center justify-between">
+    <div class="h-14 px-4 border-b flex items-center justify-between sidebar-border">
       <h2 v-if="!isCollapsed" class="text-sm font-semibold tracking-tight">Dashboard</h2>
       <button
         @click="toggleSidebar"
-        class="p-1.5 rounded-md hover:bg-accent transition-colors"
+        class="p-1.5 rounded-md transition-colors sidebar-toggle-btn"
         :class="{ 'mx-auto': isCollapsed }"
       >
         <ChevronLeft v-if="!isCollapsed" :size="16" class="text-muted-foreground" />
@@ -115,8 +115,8 @@ watch(() => route.path, () => {
     </nav>
 
     <!-- User Section -->
-    <div class="p-3 border-t border-border">
-      <div class="flex items-center gap-3 hover:bg-accent p-2 rounded-lg transition-colors cursor-pointer">
+    <div class="p-3 border-t sidebar-border">
+      <div class="flex items-center gap-3 p-2 rounded-lg transition-colors cursor-pointer sidebar-user-item">
         <div class="w-8 h-8 rounded-full bg-muted flex items-center justify-center text-xs font-medium">
           A
         </div>
@@ -128,3 +128,14 @@ watch(() => route.path, () => {
     </div>
   </aside>
 </template>
+
+<style scoped>
+.sidebar-toggle-btn:hover {
+  background-color: hsl(var(--color-sidebar-hover));
+}
+
+.sidebar-user-item:hover {
+  background-color: hsl(var(--color-sidebar-hover));
+}
+</style>
+

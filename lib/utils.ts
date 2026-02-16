@@ -9,3 +9,7 @@ export function cn(...inputs: ClassValue[]) {
 export function getBackandUrl(): string {
   return import.meta.env.BACKAND_URL || 'http://127.0.0.1';
 }
+
+export function getSiteUrl(): string {
+  return import.meta.env.SITE_URL || 'http://127.0.0.1';
+}
