@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue'
-import Button from './Button.vue'
+import Button from './button/Button.vue'
 
 interface DevErrorModalProps {
   open?: boolean

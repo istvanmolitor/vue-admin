@@ -1,7 +1,7 @@
 <script setup lang="ts">
 
 import { useRouter } from 'vue-router'
-import Button from '../ui/Button.vue'
+import Button from '../ui/button/Button.vue'
 import ProfileMenu from './ProfileMenu.vue'
 import Icon from "@admin/components/ui/Icon.vue";
 

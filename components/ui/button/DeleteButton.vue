@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import Button from './Button.vue'
-import Icon from './Icon.vue'
+import Icon from '../Icon.vue'
 
-interface EditButtonProps {
+interface DeleteButtonProps {
   variant?: 'ghost' | 'default' | 'destructive' | 'outline' | 'secondary'
   size?: 'sm' | 'default' | 'lg' | 'icon'
   iconName?: string
@@ -11,13 +11,13 @@ interface EditButtonProps {
   label?: string
 }
 
-const props = withDefaults(defineProps<EditButtonProps>(), {
-  variant: 'ghost',
+withDefaults(defineProps<DeleteButtonProps>(), {
+  variant: 'destructive',
   size: 'sm',
-  iconName: 'pen-line',
+  iconName: 'trash',
   iconSize: 16,
   showIcon: true,
-  label: 'Szerkesztés'
+  label: 'Törlés'
 })
 
 defineEmits<{

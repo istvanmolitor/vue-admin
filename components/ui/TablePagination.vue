@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import Button from './Button.vue'
+import Button from './button/Button.vue'
 
 const props = defineProps<{
   currentPage: number

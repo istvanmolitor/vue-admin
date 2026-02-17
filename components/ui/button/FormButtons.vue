@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import Button from './Button.vue'
-import Icon from './Icon.vue'
+import Icon from '../Icon.vue'
 
 interface Props {
   isSaving?: boolean
@@ -35,8 +35,7 @@ defineEmits<{
     </Button>
     <Button
       type="submit"
-      variant="default"
-      class="min-w-[100px] shadow-md btn btn-primary"
+      variant="primary"
       :disabled="isSaving || saveDisabled"
       @click="$emit('save')"
     >

@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import ShowButton from './ShowButton.vue'
-import EditButton from './EditButton.vue'
-import DeleteButton from './DeleteButton.vue'
+import ShowButton from './button/ShowButton.vue'
+import EditButton from './button/EditButton.vue'
+import DeleteButton from './button/DeleteButton.vue'
 import ConfirmDialog from './ConfirmDialog.vue'
 
 interface RowActionsProps {

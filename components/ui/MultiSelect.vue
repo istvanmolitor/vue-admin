@@ -2,7 +2,7 @@
 import { ref, computed, watch } from 'vue'
 import Input from './Input.vue'
 import Label from './Label.vue'
-import Button from './Button.vue'
+import Button from './button/Button.vue'
 import Icon from './Icon.vue'
 
 interface Props {

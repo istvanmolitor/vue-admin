@@ -30,6 +30,8 @@
   --color-popover-foreground: 222 47% 11%;
   --color-primary: 217 91% 60%;
   --color-primary-foreground: 0 0% 100%;
+  --color-primary-emphasis: 217 91% 45%;
+  --color-primary-emphasis-foreground: 0 0% 100%;
   --color-secondary: 214 95% 93%;
   --color-secondary-foreground: 217 91% 60%;
   --color-muted: 210 40% 96%;
@@ -60,6 +62,8 @@
     --color-popover-foreground: 210 40% 98%;
     --color-primary: 217 91% 60%;
     --color-primary-foreground: 222 47% 11%;
+    --color-primary-emphasis: 217 91% 50%;
+    --color-primary-emphasis-foreground: 222 47% 11%;
     --color-secondary: 215 28% 24%;
     --color-secondary-foreground: 210 40% 98%;
     --color-muted: 215 28% 24%;
@@ -139,6 +143,29 @@
     background-color: hsl(217 40% 20%);
     color: hsl(210 40% 98%);
     border-color: hsl(217 40% 30%);
+  }
+}
+
+/* Primary button with darker blue emphasis */
+.button-primary {
+  background-color: hsl(217 91% 45%);
+  color: hsl(0 0% 100%);
+  font-weight: 600;
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+}
+
+.button-primary:hover {
+  background-color: hsl(217 91% 38%);
+}
+
+@media (prefers-color-scheme: dark) {
+  .button-primary {
+    background-color: hsl(217 91% 50%);
+    color: hsl(222 47% 11%);
+  }
+
+  .button-primary:hover {
+    background-color: hsl(217 91% 43%);
   }
 }
 

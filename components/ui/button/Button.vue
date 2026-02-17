@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { cn } from '../../lib/utils'
+import { cn } from '@admin/lib/utils'
 
 interface ButtonProps {
-  variant?: 'default' | 'destructive' | 'outline' | 'secondary' | 'ghost' | 'link'
+  variant?: 'default' | 'destructive' | 'outline' | 'secondary' | 'ghost' | 'link' | 'primary'
   size?: 'default' | 'sm' | 'lg' | 'icon'
   class?: string
 }
@@ -14,6 +14,7 @@ const props = withDefaults(defineProps<ButtonProps>(), {
 
 const variantClasses = {
   default: 'bg-primary text-primary-foreground hover:bg-primary/90',
+  primary: 'button-primary',
   destructive: 'bg-destructive text-destructive-foreground hover:bg-destructive/90',
   outline: 'border border-input bg-background hover:bg-accent hover:text-accent-foreground',
   secondary: 'bg-secondary text-secondary-foreground hover:bg-secondary/80',

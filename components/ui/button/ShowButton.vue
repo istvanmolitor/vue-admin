@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import Button from './Button.vue'
-import Icon from './Icon.vue'
+import Icon from '../Icon.vue'
 
 interface ShowButtonProps {
   variant?: 'ghost' | 'default' | 'destructive' | 'outline' | 'secondary'
