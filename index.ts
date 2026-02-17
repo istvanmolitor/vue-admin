@@ -22,4 +22,5 @@ export { default as RowActions } from './components/ui/RowActions.vue'
 export { default as ConfirmDialog } from './components/ui/ConfirmDialog.vue'
 export { default as FieldError } from './components/ui/FieldError.vue'
 export { default as DevErrorModal } from './components/ui/DevErrorModal.vue'
+export { default as Select } from './components/ui/Select.vue'
 
