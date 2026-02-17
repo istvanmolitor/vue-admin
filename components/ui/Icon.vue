@@ -5,6 +5,7 @@ import {
   Save,
   X,
   Upload,
+  Download,
   Loader2,
   Key,
   Mail,
@@ -27,6 +28,7 @@ import {
   MoveUp,
   MoveDown,
   Eye,
+  Info,
   type LucideIcon
 } from 'lucide-vue-next'
 
@@ -46,6 +48,7 @@ const iconMap: Record<string, LucideIcon> = {
   save: Save,
   x: X,
   upload: Upload,
+  download: Download,
   loader: Loader2,
   key: Key,
   mail: Mail,
@@ -70,6 +73,7 @@ const iconMap: Record<string, LucideIcon> = {
   'move-up': MoveUp,
   'move-down': MoveDown,
   eye: Eye,
+  info: Info,
 }
 
 const iconComponent = computed(() => {
