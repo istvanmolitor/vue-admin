@@ -13,3 +13,7 @@ export function getBackandUrl(): string {
 export function getSiteUrl(): string {
   return import.meta.env.SITE_URL || 'http://127.0.0.1';
 }
+
+// Re-export useDevError for convenience
+export { useDevError } from './useDevError'
+
