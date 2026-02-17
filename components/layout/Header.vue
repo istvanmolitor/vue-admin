@@ -9,7 +9,7 @@ const router = useRouter()
 
 
 const goToSettings = () => {
-  router.push('/settings')
+  router.push('/admin/settings')
 }
 </script>
 

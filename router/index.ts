@@ -1,22 +1,12 @@
 import type { RouteRecordRaw } from 'vue-router'
-import DashboardLayout from '../components/layout/DashboardLayout.vue'
-import Settings from '../components/Settings.vue'
 
-const routes: RouteRecordRaw[] = [
+const adminRoutes: RouteRecordRaw[] = [
   {
-    path: '/settings',
-    component: DashboardLayout,
-    children: [
-      {
-        path: '',
-        name: 'settings',
-        component: Settings,
-        meta: {
-          requiresAuth: true
-        }
-      }
-    ]
-  }
+    path: '/admin/settings',
+    name: 'admin-settings',
+    component: () => import('../views/Settings.vue'),
+    meta: { requiresAuth: true }
+  },
 ]
 
-export default routes
+export default adminRoutes
