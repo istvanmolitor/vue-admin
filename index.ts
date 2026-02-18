@@ -16,6 +16,7 @@ export { default as adminRoutes } from './router/index'
 // Components
 export { default as AdminMenu } from './components/AdminMenu.vue'
 export { default as ProfileMenu } from './components/layout/ProfileMenu.vue'
+export { default as AuthLayout } from './components/layout/AuthLayout.vue'
 export { default as Settings } from './views/Settings.vue'
 export { EditButton, DeleteButton, IconButton } from './components/ui/button'
 export { default as RowActions } from './components/ui/RowActions.vue'

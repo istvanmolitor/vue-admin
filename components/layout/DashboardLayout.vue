@@ -9,7 +9,7 @@ const shouldHavePadding = computed(() => !route.meta?.noPadding)
 </script>
 
 <template>
-  <div class="flex h-screen bg-background">
+  <div class="flex h-screen min-h-screen bg-background">
     <!-- Sidebar -->
     <Sidebar />
 

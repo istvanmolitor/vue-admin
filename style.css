@@ -1,172 +1,172 @@
 @import "tailwindcss";
 
 :root {
-  /* Light mode - Custom blue colors for header and sidebar */
-  --color-header-bg: 217 91% 60%;
-  --color-header-foreground: 0 0% 100%;
-  --color-sidebar-bg: 220 26% 96%;
-  --color-sidebar-foreground: 222 47% 11%;
-  --color-sidebar-hover: 214 95% 93%;
+    /* Light mode - Custom blue colors for header and sidebar */
+    --color-header-bg: 217 91% 60%;
+    --color-header-foreground: 0 0% 100%;
+    --color-sidebar-bg: 220 26% 96%;
+    --color-sidebar-foreground: 222 47% 11%;
+    --color-sidebar-hover: 214 95% 93%;
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
-    /* Dark mode - Custom blue colors for header and sidebar */
-    --color-header-bg: 217 50% 25%;
-    --color-header-foreground: 210 40% 98%;
-    --color-sidebar-bg: 220 40% 15%;
-    --color-sidebar-foreground: 210 40% 98%;
-    --color-sidebar-hover: 217 40% 22%;
-  }
+    :root {
+        /* Dark mode - Custom blue colors for header and sidebar */
+        --color-header-bg: 217 50% 25%;
+        --color-header-foreground: 210 40% 98%;
+        --color-sidebar-bg: 220 40% 15%;
+        --color-sidebar-foreground: 210 40% 98%;
+        --color-sidebar-hover: 217 40% 22%;
+    }
 }
 
 @theme {
-  /* Light mode - Modern blue theme with clean, professional look */
-  --color-background: 210 40% 98%;
-  --color-foreground: 222 47% 11%;
-  --color-card: 214 100% 97%;
-  --color-card-foreground: 222 47% 11%;
-  --color-popover: 0 0% 100%;
-  --color-popover-foreground: 222 47% 11%;
-  --color-primary: 217 91% 60%;
-  --color-primary-foreground: 0 0% 100%;
-  --color-primary-emphasis: 217 91% 45%;
-  --color-primary-emphasis-foreground: 0 0% 100%;
-  --color-secondary: 214 95% 93%;
-  --color-secondary-foreground: 217 91% 60%;
-  --color-muted: 210 40% 96%;
-  --color-muted-foreground: 215 16% 47%;
-  --color-accent: 214 95% 93%;
-  --color-accent-foreground: 217 91% 60%;
-  --color-destructive: 0 84% 60%;
-  --color-destructive-foreground: 0 0% 100%;
-  --color-border: 214 60% 85%;
-  --color-input: 214 32% 91%;
-  --color-ring: 217 91% 60%;
-  --radius: 0.5rem;
-  --color-chart-1: 217 91% 60%;
-  --color-chart-2: 173 58% 39%;
-  --color-chart-3: 197 37% 50%;
-  --color-chart-4: 43 74% 66%;
-  --color-chart-5: 280 65% 60%;
-}
-
-@media (prefers-color-scheme: dark) {
-  @theme {
-    /* Dark mode - Modern blue-slate theme for premium feel */
-    --color-background: 222 47% 11%;
-    --color-foreground: 210 40% 98%;
-    --color-card: 217 40% 20%;
-    --color-card-foreground: 210 40% 98%;
-    --color-popover: 217 33% 17%;
-    --color-popover-foreground: 210 40% 98%;
+    /* Light mode - Modern blue theme with clean, professional look */
+    --color-background: 210 40% 98%;
+    --color-foreground: 222 47% 11%;
+    --color-card: 214 100% 97%;
+    --color-card-foreground: 222 47% 11%;
+    --color-popover: 0 0% 100%;
+    --color-popover-foreground: 222 47% 11%;
     --color-primary: 217 91% 60%;
-    --color-primary-foreground: 222 47% 11%;
-    --color-primary-emphasis: 217 91% 50%;
-    --color-primary-emphasis-foreground: 222 47% 11%;
-    --color-secondary: 215 28% 24%;
-    --color-secondary-foreground: 210 40% 98%;
-    --color-muted: 215 28% 24%;
-    --color-muted-foreground: 217 20% 65%;
-    --color-accent: 215 28% 24%;
+    --color-primary-foreground: 0 0% 100%;
+    --color-primary-emphasis: 217 91% 45%;
+    --color-primary-emphasis-foreground: 0 0% 100%;
+    --color-secondary: 214 95% 93%;
+    --color-secondary-foreground: 217 91% 60%;
+    --color-muted: 210 40% 96%;
+    --color-muted-foreground: 215 16% 47%;
+    --color-accent: 214 95% 93%;
     --color-accent-foreground: 217 91% 60%;
-    --color-destructive: 0 63% 31%;
-    --color-destructive-foreground: 210 40% 98%;
-    --color-border: 217 40% 30%;
-    --color-input: 215 28% 24%;
+    --color-destructive: 0 84% 60%;
+    --color-destructive-foreground: 0 0% 100%;
+    --color-border: 214 60% 85%;
+    --color-input: 214 32% 91%;
     --color-ring: 217 91% 60%;
+    --radius: 0.5rem;
     --color-chart-1: 217 91% 60%;
-    --color-chart-2: 160 60% 45%;
+    --color-chart-2: 173 58% 39%;
     --color-chart-3: 197 37% 50%;
     --color-chart-4: 43 74% 66%;
     --color-chart-5: 280 65% 60%;
-  }
+}
+
+@media (prefers-color-scheme: dark) {
+    @theme {
+        /* Dark mode - Modern blue-slate theme for premium feel */
+        --color-background: 222 47% 11%;
+        --color-foreground: 210 40% 98%;
+        --color-card: 217 40% 20%;
+        --color-card-foreground: 210 40% 98%;
+        --color-popover: 217 33% 17%;
+        --color-popover-foreground: 210 40% 98%;
+        --color-primary: 217 91% 60%;
+        --color-primary-foreground: 222 47% 11%;
+        --color-primary-emphasis: 217 91% 50%;
+        --color-primary-emphasis-foreground: 222 47% 11%;
+        --color-secondary: 215 28% 24%;
+        --color-secondary-foreground: 210 40% 98%;
+        --color-muted: 215 28% 24%;
+        --color-muted-foreground: 217 20% 65%;
+        --color-accent: 215 28% 24%;
+        --color-accent-foreground: 217 91% 60%;
+        --color-destructive: 0 63% 31%;
+        --color-destructive-foreground: 210 40% 98%;
+        --color-border: 217 40% 30%;
+        --color-input: 215 28% 24%;
+        --color-ring: 217 91% 60%;
+        --color-chart-1: 217 91% 60%;
+        --color-chart-2: 160 60% 45%;
+        --color-chart-3: 197 37% 50%;
+        --color-chart-4: 43 74% 66%;
+        --color-chart-5: 280 65% 60%;
+    }
 }
 
 /* Smooth, subtle scrollbar with blue accent */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+    width: 8px;
+    height: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: hsl(var(--color-muted));
-  border-radius: 4px;
+    background: hsl(var(--color-muted));
+    border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: hsl(var(--color-primary) / 0.3);
-  border-radius: 4px;
-  transition: background 0.2s;
+    background: hsl(var(--color-primary) / 0.3);
+    border-radius: 4px;
+    transition: background 0.2s;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: hsl(var(--color-primary) / 0.5);
+    background: hsl(var(--color-primary) / 0.5);
 }
 
 /* Custom blue header and sidebar styles */
 .header-blue {
-  background-color: hsl(var(--color-sidebar-bg));
-  color: hsl(var(--color-sidebar-foreground));
-  border-color: hsl(214 60% 85%);
+    background-color: hsl(var(--color-sidebar-bg));
+    color: hsl(var(--color-sidebar-foreground));
+    border-color: hsl(214 60% 85%);
 }
 
 @media (prefers-color-scheme: dark) {
-  .header-blue {
-    border-color: hsl(217 40% 30%);
-  }
+    .header-blue {
+        border-color: hsl(217 40% 30%);
+    }
 }
 
 .sidebar-blue {
-  background-color: hsl(var(--color-sidebar-bg));
-  color: hsl(var(--color-sidebar-foreground));
+    background-color: hsl(var(--color-sidebar-bg));
+    color: hsl(var(--color-sidebar-foreground));
 }
 
 .sidebar-border {
-  border-color: hsl(214 60% 85%);
+    border-color: hsl(214 60% 85%);
 }
 
 @media (prefers-color-scheme: dark) {
-  .sidebar-border {
-    border-color: hsl(217 40% 30%);
-  }
+    .sidebar-border {
+        border-color: hsl(217 40% 30%);
+    }
 }
 
 .card-blue {
-  background-color: hsl(214 100% 97%);
-  color: hsl(222 47% 11%);
-  border-color: hsl(214 60% 85%);
+    background-color: hsl(214 100% 97%);
+    color: hsl(222 47% 11%);
+    border-color: hsl(214 60% 85%);
 }
 
 @media (prefers-color-scheme: dark) {
-  .card-blue {
-    background-color: hsl(217 40% 20%);
-    color: hsl(210 40% 98%);
-    border-color: hsl(217 40% 30%);
-  }
+    .card-blue {
+        background-color: hsl(217 40% 20%);
+        color: hsl(210 40% 98%);
+        border-color: hsl(217 40% 30%);
+    }
 }
 
 /* Primary button with darker blue emphasis */
 .button-primary {
-  background-color: hsl(217 91% 45%);
-  color: hsl(0 0% 100%);
-  font-weight: 600;
-  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    background-color: hsl(217 91% 45%);
+    color: hsl(0 0% 100%);
+    font-weight: 600;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
 }
 
 .button-primary:hover {
-  background-color: hsl(217 91% 38%);
+    background-color: hsl(217 91% 38%);
 }
 
 @media (prefers-color-scheme: dark) {
-  .button-primary {
-    background-color: hsl(217 91% 50%);
-    color: hsl(222 47% 11%);
-  }
+    .button-primary {
+        background-color: hsl(217 91% 50%);
+        color: hsl(222 47% 11%);
+    }
 
-  .button-primary:hover {
-    background-color: hsl(217 91% 43%);
-  }
+    .button-primary:hover {
+        background-color: hsl(217 91% 43%);
+    }
 }
 
 

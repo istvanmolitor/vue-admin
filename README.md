@@ -87,5 +87,29 @@ Lapozó komponens intelligens oldal számozással.
 ## Elrendezés
 
 - `DashboardLayout.vue` - Fő admin elrendezés
+- `AuthLayout.vue` - Elrendezés kis űrlapokhoz (login, register, stb.)
+
+### AuthLayout
+Központosított elrendezés autentikációs oldalakhoz és kis űrlapokhoz.
+
+**Használat:**
+```vue
+<script setup lang="ts">
+import { AuthLayout } from '@admin'
+import Card from '@admin/components/ui/Card.vue'
+</script>
+
+<template>
+  <AuthLayout max-width="md" gradient="blue-purple">
+    <Card>
+      <!-- Űrlap tartalma -->
+    </Card>
+  </AuthLayout>
+</template>
+```
+
+**Props:**
+- `maxWidth` - A tartalom maximális szélessége: `'sm'` | `'md'` | `'lg'` (alapértelmezett: `'md'`)
+- `gradient` - A háttér színátmenet: `'blue-purple'` | `'indigo-purple'` | `'blue-teal'` | `'pink-orange'` (alapértelmezett: `'blue-purple'`)
 
 Részletesebb dokumentáció: `/DATA_TABLE_IMPLEMENTATION.md`

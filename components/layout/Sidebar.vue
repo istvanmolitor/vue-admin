@@ -82,7 +82,7 @@ watch(() => route.path, () => {
 <template>
   <aside
     :class="[
-      'border-r transition-all duration-200 flex flex-col sidebar-blue sidebar-border',
+      'h-full min-h-full border-r transition-all duration-200 flex flex-col sidebar-blue sidebar-border',
       isCollapsed ? 'w-16' : 'w-64'
     ]"
   >
