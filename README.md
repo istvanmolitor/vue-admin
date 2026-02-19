@@ -86,7 +86,7 @@ Lapozó komponens intelligens oldal számozással.
 
 ## Elrendezés
 
-- `DashboardLayout.vue` - Fő admin elrendezés
+- `AdminLayout.vue` - Fő admin elrendezés
 - `AuthLayout.vue` - Elrendezés kis űrlapokhoz (login, register, stb.)
 
 ### AuthLayout

@@ -1,11 +1,7 @@
 <script setup lang="ts">
-import { computed } from 'vue'
-import { useRoute } from 'vue-router'
 import Sidebar from './Sidebar.vue'
 import Header from './Header.vue'
 
-const route = useRoute()
-const shouldHavePadding = computed(() => !route.meta?.noPadding)
 </script>
 
 <template>
@@ -19,8 +15,8 @@ const shouldHavePadding = computed(() => !route.meta?.noPadding)
       <Header />
 
       <!-- Page Content -->
-      <main class="flex-1 overflow-y-auto" :class="{ 'p-8': shouldHavePadding }">
-        <slot />
+      <main class="flex-1 overflow-y-auto p-4">
+          <slot />
       </main>
     </div>
   </div>

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useMenu } from '@admin/index.ts'
-import AdminLayout from "@admin/components/layout/DashboardLayout.vue";
+import AdminLayout from "@admin/components/layout/AdminLayout.vue";
 
 const { menuItems, hasChildren } = useMenu('settings')
 

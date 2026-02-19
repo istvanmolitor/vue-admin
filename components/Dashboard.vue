@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import DashboardLayout from './layout/DashboardLayout.vue'
+import DashboardLayout from './layout/AdminLayout.vue'
 import Card from './ui/Card.vue'
 import CardHeader from './ui/CardHeader.vue'
 import CardTitle from './ui/CardTitle.vue'

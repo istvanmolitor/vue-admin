@@ -70,7 +70,7 @@ const marginClass = computed(() => {
       <button
         @click="handleToggle"
         :class="[
-          'w-full flex items-center gap-2 rounded-lg text-sm font-medium transition-colors menu-item-btn',
+          'w-full flex gap-2 rounded-lg text-sm font-medium transition-colors menu-item-btn',
           paddingClass,
           'text-muted-foreground hover:text-foreground'
         ]"
