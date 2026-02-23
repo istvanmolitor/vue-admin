@@ -1,24 +1,8 @@
 <script setup lang="ts">
-import { useRoute } from 'vue-router'
-import { computed } from 'vue'
 import { Menu, Bell, Search } from 'lucide-vue-next'
 
-defineProps<{ sidebarOpen: boolean }>()
+defineProps<{ sidebarOpen: boolean; pageTitle: string }>()
 defineEmits<{ 'toggle-sidebar': [] }>()
-
-const route = useRoute()
-
-const pageTitle = computed(() => {
-  const titles: Record<string, string> = {
-    '/': 'Dashboard',
-    '/users': 'Felhasználók',
-    '/orders': 'Rendelések',
-    '/analytics': 'Analitika',
-    '/content': 'Tartalom',
-    '/settings': 'Beállítások',
-  }
-  return titles[route.path] ?? 'Admin'
-})
 </script>
 
 <template>

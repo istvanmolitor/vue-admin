@@ -3,6 +3,8 @@ import { ref } from 'vue'
 import AppSidebar from './AppSidebar.vue'
 import AppHeader from './AppHeader.vue'
 
+defineProps<{ pageTitle: string }>()
+
 const sidebarOpen = ref(false)
 </script>
 
@@ -19,7 +21,7 @@ const sidebarOpen = ref(false)
 
     <!-- Main -->
     <div class="flex flex-col md:pl-64">
-      <AppHeader :sidebar-open="sidebarOpen" @toggle-sidebar="sidebarOpen = !sidebarOpen" />
+      <AppHeader :sidebar-open="sidebarOpen" :page-title="pageTitle" @toggle-sidebar="sidebarOpen = !sidebarOpen" />
 
       <main class="flex-1 p-4 md:p-6">
         <slot />
