@@ -2,7 +2,6 @@
 import { ref } from 'vue'
 import AppSidebar from './AppSidebar.vue'
 import AppHeader from './AppHeader.vue'
-import { RouterView } from 'vue-router'
 
 const sidebarOpen = ref(false)
 </script>
@@ -23,7 +22,7 @@ const sidebarOpen = ref(false)
       <AppHeader :sidebar-open="sidebarOpen" @toggle-sidebar="sidebarOpen = !sidebarOpen" />
 
       <main class="flex-1 p-4 md:p-6">
-        <RouterView />
+        <slot />
       </main>
     </div>
   </div>
