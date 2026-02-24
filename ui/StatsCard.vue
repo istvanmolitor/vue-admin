@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import { type Component } from 'vue'
+import Icon from './Icon.vue'
 
 defineProps<{
   title: string
   value: string | number
   description?: string
-  icon: Component
+  icon: string
   trend?: number
   color?: 'blue' | 'green' | 'orange' | 'purple'
 }>()
@@ -27,7 +27,7 @@ const colorMap = {
         <p v-if="description" class="mt-1 text-xs text-muted-foreground">{{ description }}</p>
       </div>
       <div :class="['flex h-12 w-12 items-center justify-center rounded-lg', color ? colorMap[color] : colorMap.blue]">
-        <component :is="icon" class="h-6 w-6" />
+        <Icon :name="icon" class="h-6 w-6" />
       </div>
     </div>
 
