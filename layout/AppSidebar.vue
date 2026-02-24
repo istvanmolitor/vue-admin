@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { useRoute, RouterLink } from 'vue-router'
+import { cn } from '../lib/utils'
 import Icon from '../ui/Icon.vue'
 
 defineProps<{ open: boolean }>()
@@ -79,10 +80,10 @@ const isActive = (to: string) => {
         <span class="flex-1">{{ item.label }}</span>
         <Icon
           name="ChevronRight"
-          :class="[
+          :class="cn(
             'h-4 w-4 transition-opacity',
             isActive(item.to) ? 'opacity-70' : 'opacity-0 group-hover:opacity-50'
-          ]"
+          )"
         />
       </RouterLink>
     </nav>
