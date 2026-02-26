@@ -1,50 +1,55 @@
 <script setup lang="ts">
+import { ref, computed, watch } from 'vue'
 import { useRoute, RouterLink } from 'vue-router'
 import { cn } from '../lib/utils'
 import Icon from '../ui/Icon.vue'
+import { useMenu } from '../../ts-menu'
+import type { MenuItemConfig } from '../../ts-menu'
 
 defineProps<{ open: boolean }>()
 defineEmits<{ close: [] }>()
 
 const route = useRoute()
+const { menu: adminMenuRaw } = useMenu('admin')
+const adminMenu = computed(() => adminMenuRaw.value || { children: [] })
 
-const navItems = [
-  {
-    label: 'Dashboard',
-    icon: 'LayoutDashboard',
-    to: '/',
-  },
-  {
-    label: 'Felhasználók',
-    icon: 'Users',
-    to: '/users',
-  },
-  {
-    label: 'Rendelések',
-    icon: 'ShoppingCart',
-    to: '/orders',
-  },
-  {
-    label: 'Analitika',
-    icon: 'BarChart3',
-    to: '/analytics',
-  },
-  {
-    label: 'Tartalom',
-    icon: 'FileText',
-    to: '/content',
-  },
-  {
-    label: 'Beállítások',
-    icon: 'Settings',
-    to: '/settings',
-  },
-]
+const expandedItems = ref<Set<string>>(new Set())
 
-const isActive = (to: string) => {
-  if (to === '/') return route.path === '/'
-  return route.path.startsWith(to)
+const toggleItem = (id: string | undefined) => {
+  if (!id) return
+  if (expandedItems.value.has(id)) {
+    expandedItems.value.delete(id)
+  } else {
+    expandedItems.value.add(id)
+  }
 }
+
+const isExpanded = (id: string | undefined) => id ? expandedItems.value.has(id) : false
+
+const isActive = (to: string | undefined): boolean => {
+  if (!to) return false
+  if (to === '/') return route.path === '/'
+  return route.path === to || route.path.startsWith(to + '/')
+}
+
+const isChildActive = (item: MenuItemConfig): boolean => {
+  if (isActive(item.path)) return true
+  if (item.children && item.children.length > 0) {
+    return item.children.some(child => isChildActive(child))
+  }
+  return false
+}
+
+// Auto-expand if child is active
+watch(() => route.path, () => {
+  adminMenu.value.children?.forEach(item => {
+    if (item.id && item.children && item.children.length > 0) {
+      if (isChildActive(item)) {
+        expandedItems.value.add(item.id)
+      }
+    }
+  })
+}, { immediate: true })
 </script>
 
 <template>
@@ -64,28 +69,64 @@ const isActive = (to: string) => {
 
     <!-- Navigation -->
     <nav class="flex-1 overflow-y-auto px-3 py-4 space-y-1">
-      <RouterLink
-        v-for="item in navItems"
-        :key="item.to"
-        :to="item.to"
-        @click="$emit('close')"
-        :class="[
-          'flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors group',
-          isActive(item.to)
-            ? 'bg-sidebar-primary text-sidebar-primary-foreground'
-            : 'text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground'
-        ]"
-      >
-        <Icon :name="item.icon" class="h-5 w-5 shrink-0" />
-        <span class="flex-1">{{ item.label }}</span>
-        <Icon
-          name="ChevronRight"
-          :class="cn(
-            'h-4 w-4 transition-opacity',
-            isActive(item.to) ? 'opacity-70' : 'opacity-0 group-hover:opacity-50'
-          )"
-        />
-      </RouterLink>
+      <template v-for="item in adminMenu.children" :key="item.id">
+        <!-- Parent with children -->
+        <div v-if="item.children && item.children.length > 0" class="space-y-1">
+          <button
+            @click="toggleItem(item.id)"
+            :class="[
+              'flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors group',
+              isChildActive(item)
+                ? 'bg-sidebar-accent/50 text-sidebar-accent-foreground'
+                : 'text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground'
+            ]"
+          >
+            <Icon v-if="item.icon" :name="item.icon" class="h-5 w-5 shrink-0" />
+            <span class="flex-1 text-left">{{ item.title }}</span>
+            <Icon
+              name="ChevronRight"
+              :class="cn(
+                'h-4 w-4 transition-transform duration-200',
+                isExpanded(item.id) ? 'rotate-90' : ''
+              )"
+            />
+          </button>
+
+          <div v-if="isExpanded(item.id)" class="ml-4 space-y-1 border-l border-sidebar-border pl-2">
+            <RouterLink
+              v-for="child in item.children"
+              :key="child.id"
+              :to="child.path || '#'"
+              @click="$emit('close')"
+              :class="[
+                'flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors group',
+                isActive(child.path)
+                  ? 'bg-sidebar-primary text-sidebar-primary-foreground'
+                  : 'text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground'
+              ]"
+            >
+              <Icon v-if="child.icon" :name="child.icon" class="h-4 w-4 shrink-0" />
+              <span class="flex-1">{{ child.title }}</span>
+            </RouterLink>
+          </div>
+        </div>
+
+        <!-- Single item -->
+        <RouterLink
+          v-else
+          :to="item.path || '#'"
+          @click="$emit('close')"
+          :class="[
+            'flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors group',
+            isActive(item.path)
+              ? 'bg-sidebar-primary text-sidebar-primary-foreground'
+              : 'text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground'
+          ]"
+        >
+          <Icon v-if="item.icon" :name="item.icon" class="h-5 w-5 shrink-0" />
+          <span class="flex-1">{{ item.title }}</span>
+        </RouterLink>
+      </template>
     </nav>
 
     <!-- Footer -->
