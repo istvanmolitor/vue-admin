@@ -1,6 +1,8 @@
 <script setup lang="ts" generic="TData">
-import { LucideChevronLeft, LucideChevronRight, LucideSearch, LucideArrowUpDown, LucideArrowUp, LucideArrowDown } from 'lucide-vue-next'
-import { ref, watch } from 'vue'
+import { LucideArrowUpDown, LucideArrowUp, LucideArrowDown } from 'lucide-vue-next'
+import { ref } from 'vue'
+import DataTablePagination from './DataTablePagination.vue'
+import DataTableSearch from './DataTableSearch.vue'
 
 export interface Column<TData = any> {
   key: keyof TData | string
@@ -69,27 +71,17 @@ const handlePageChange = (page: number) => {
     page
   })
 }
-
-watch(() => search.value, (newValue) => {
-  if (newValue === '') {
-    handleSearch()
-  }
-})
 </script>
 
 <template>
   <div class="w-full space-y-4">
     <div class="flex items-center justify-between">
-      <div v-if="searchable" class="relative w-72">
-        <LucideSearch class="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
-        <input
-          v-model="search"
-          type="search"
-          :placeholder="searchPlaceholder || 'Keresés...'"
-          class="flex h-10 w-full rounded-md border border-input bg-background px-9 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-          @keyup.enter="handleSearch"
-        />
-      </div>
+      <DataTableSearch
+        v-if="searchable"
+        v-model="search"
+        :placeholder="searchPlaceholder"
+        @search="handleSearch"
+      />
       <slot name="actions"></slot>
     </div>
     <div class="rounded-md border">
@@ -158,29 +150,11 @@ watch(() => search.value, (newValue) => {
         </tbody>
       </table>
     </div>
-    <div v-if="pagination" class="flex items-center justify-between py-4">
-      <div class="text-sm text-muted-foreground">
-        Összesen {{ pagination.total }} találat
-      </div>
-      <div class="flex items-center space-x-2">
-        <button
-          class="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground h-9 px-3"
-          :disabled="pagination.current_page === 1 || loading"
-          @click="handlePageChange(pagination.current_page - 1)"
-        >
-          <LucideChevronLeft class="h-4 w-4" />
-        </button>
-        <div class="text-sm font-medium">
-          {{ pagination.current_page }} / {{ pagination.last_page }}
-        </div>
-        <button
-          class="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground h-9 px-3"
-          :disabled="pagination.current_page === pagination.last_page || loading"
-          @click="handlePageChange(pagination.current_page + 1)"
-        >
-          <LucideChevronRight class="h-4 w-4" />
-        </button>
-      </div>
-    </div>
+    <DataTablePagination
+      v-if="pagination"
+      :pagination="pagination"
+      :loading="loading"
+      @change="handlePageChange"
+    />
   </div>
 </template>
