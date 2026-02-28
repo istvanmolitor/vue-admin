@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { LucidePencil, LucideTrash2 } from 'lucide-vue-next'
+import { LucidePencil } from 'lucide-vue-next'
+import DeleteButton from './DeleteButton.vue'
 
 const props = defineProps<{
   editUrl?: string
@@ -27,11 +28,8 @@ const emits = defineEmits<{
     >
       <LucidePencil class="h-4 w-4" />
     </button>
-    <button
-      @click="emits('delete')"
-      class="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 border border-input bg-background shadow-sm hover:bg-destructive hover:text-destructive-foreground h-8 w-8"
-    >
-      <LucideTrash2 class="h-4 w-4" />
-    </button>
+    <DeleteButton
+      @confirm="emits('delete')"
+    />
   </div>
 </template>
