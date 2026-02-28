@@ -1,14 +1,46 @@
 <script setup lang="ts">
-import type { HTMLAttributes } from 'vue'
-import { cn } from '@admin/lib/utils'
+import Button from './button/Button.vue'
+import Icon from './Icon.vue'
 
-const props = defineProps<{
-  class?: HTMLAttributes['class']
+interface Props {
+  isSaving?: boolean
+  saveLabel?: string
+  cancelLabel?: string
+  saveDisabled?: boolean
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  isSaving: false,
+  saveLabel: 'Mentés',
+  cancelLabel: 'Mégse',
+  saveDisabled: false
+})
+
+defineEmits<{
+  (e: 'save'): void
+  (e: 'cancel'): void
 }>()
 </script>
 
 <template>
-  <div :class="cn('flex items-center justify-end gap-2 pt-4', props.class)">
-    <slot />
+  <div class="flex w-full justify-end gap-2">
+    <Button
+        variant="outline"
+        type="button"
+        :disabled="isSaving"
+        @click="$emit('cancel')"
+    >
+      <Icon name="x" :size="16" class="mr-2" />
+      {{ cancelLabel }}
+    </Button>
+    <Button
+        type="submit"
+        variant="primary"
+        :disabled="isSaving || saveDisabled"
+        @click="$emit('save')"
+    >
+      <Icon :name="isSaving ? 'loader' : 'save'" :size="16" :class="['mr-2', isSaving ? 'animate-spin' : '']" />
+      {{ isSaving ? `${saveLabel}...` : saveLabel }}
+    </Button>
   </div>
 </template>
