@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import Button from './button/Button.vue'
-import Icon from './Icon.vue'
+import SaveButton from './SaveButton.vue'
+import CancelButton from './CancelButton.vue'
 
 interface Props {
   isSaving?: boolean
@@ -24,23 +24,16 @@ defineEmits<{
 
 <template>
   <div class="flex w-full justify-end gap-2">
-    <Button
-        variant="outline"
-        type="button"
+    <CancelButton
+        :label="cancelLabel"
         :disabled="isSaving"
         @click="$emit('cancel')"
-    >
-      <Icon name="x" :size="16" class="mr-2" />
-      {{ cancelLabel }}
-    </Button>
-    <Button
-        type="submit"
-        variant="primary"
-        :disabled="isSaving || saveDisabled"
+    />
+    <SaveButton
+        :is-saving="isSaving"
+        :label="saveLabel"
+        :disabled="saveDisabled"
         @click="$emit('save')"
-    >
-      <Icon :name="isSaving ? 'loader' : 'save'" :size="16" :class="['mr-2', isSaving ? 'animate-spin' : '']" />
-      {{ isSaving ? `${saveLabel}...` : saveLabel }}
-    </Button>
+    />
   </div>
 </template>

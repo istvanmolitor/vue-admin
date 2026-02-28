@@ -22,6 +22,7 @@ const iconAliases: Record<string, string> = {
   user: 'User',
   settings: 'Settings',
   help: 'HelpCircle',
+  loading: 'Loader2',
 }
 
 const icon = computed(() => {

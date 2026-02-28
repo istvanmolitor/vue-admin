@@ -29,7 +29,7 @@ export { default as Label } from "../components/ui/Label.vue"
 export { default as Checkbox } from "../components/ui/Checkbox.vue"
 export { default as Checkboxes } from "../components/ui/Checkboxes.vue"
 export { default as Textarea } from "../components/ui/Textarea.vue"
-export { default as FormButtons } from "../components/ui/FormButtons.vue"
+export { default as FormButtons } from "../components/ui/button/FormButtons.vue"
 export { default as DataTable } from "../components/ui/DataTable.vue"
 export { default as RowActions } from "../components/ui/RowActions.vue"
 
