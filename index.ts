@@ -1,5 +1,6 @@
 // Layouts
 export { default as AdminLayout } from './components/layout/AdminLayout.vue'
+export { default as AuthLayout } from './components/layout/AuthLayout.vue'
 export { default as AppHeader } from './components/layout/AppHeader.vue'
 export { default as AppSidebar } from './components/layout/AppSidebar.vue'
 
@@ -22,7 +23,6 @@ export { default as CancelButton } from './components/ui/button/CancelButton.vue
 export { default as DataTable } from './components/ui/dataTable/DataTable.vue'
 export { default as DataTablePagination } from './components/ui/dataTable/DataTablePagination.vue'
 export { default as DataTableSearch } from './components/ui/dataTable/DataTableSearch.vue'
-export { default as RowActions } from './components/ui/button/RowActions.vue'
 export { default as Icon } from './components/ui/Icon.vue'
 export { default as DataCard } from './components/ui/DataCard.vue'
 export { default as StatsCard } from './components/ui/StatsCard.vue'

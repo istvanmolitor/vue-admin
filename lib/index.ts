@@ -10,12 +10,6 @@ export { default as Icon } from "../components/ui/Icon.vue"
 export { default as StatsCard } from "../components/ui/StatsCard.vue"
 export { default as StatusBadge } from "../components/ui/StatusBadge.vue"
 
-// Layout Components
-export { default as AdminLayout } from "../layout/AdminLayout.vue"
-export { default as AppHeader } from "../layout/AppHeader.vue"
-export { default as AppSidebar } from "../layout/AppSidebar.vue"
-export { default as AuthLayout } from "../layout/AuthLayout.vue"
-
 // UI components
 export { default as Button } from "../components/ui/button/Button.vue"
 export { default as Card } from "../components/ui/Card.vue"
@@ -33,5 +27,4 @@ export { default as FormButtons } from "../components/ui/button/FormButtons.vue"
 export { default as DataTable } from "../components/ui/dataTable/DataTable.vue"
 export { default as DataTablePagination } from "../components/ui/dataTable/DataTablePagination.vue"
 export { default as DataTableSearch } from "../components/ui/dataTable/DataTableSearch.vue"
-export { default as RowActions } from "../components/ui/button/RowActions.vue"
 

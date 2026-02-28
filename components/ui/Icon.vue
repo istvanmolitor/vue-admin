@@ -28,9 +28,7 @@ const iconAliases: Record<string, string> = {
 const icon = computed(() => {
   if (typeof props.name !== 'string') return props.name
   let iconName = props.name
-  if (iconAliases[iconName]) {
-    iconName = iconAliases[iconName]
-  }
+  iconName = iconAliases[iconName] ?? iconName
   const iconComponent = (LucideIcons as Record<string, any>)[iconName]
   if (!iconComponent) {
     console.warn(`Icon "${iconName}" not found in lucide-vue-next`)
