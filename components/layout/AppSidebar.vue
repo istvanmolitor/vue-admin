@@ -2,7 +2,7 @@
 import { ref, computed, watch } from 'vue'
 import { useRoute, RouterLink } from 'vue-router'
 import { cn } from '@admin/lib/utils'
-import Icon from '../ui/Icon.vue'
+import Icon from '../components/ui/Icon.vue'
 import { useMenu } from '@menu'
 import type { MenuItemConfig } from '@menu'
 

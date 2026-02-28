@@ -2,7 +2,7 @@
 import { ref, computed, watch } from 'vue'
 import { useRoute, RouterLink } from 'vue-router'
 import { cn } from '../lib/utils'
-import Icon from '../ui/Icon.vue'
+import Icon from '../components/ui/Icon.vue'
 import { useMenu } from '../../ts-menu'
 import type { MenuItemConfig } from '../../ts-menu'
 
@@ -81,7 +81,7 @@ watch(() => route.path, () => {
                 : 'text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground'
             ]"
           >
-            <Icon v-if="item.icon" :name="item.icon" class="h-5 w-5 shrink-0" />
+            <Icon v-if="item.icon" :name="item.icon" class="h-5 w-5 shrink-0" color="currentColor" />
             <span class="flex-1 text-left">{{ item.title }}</span>
             <Icon
               name="ChevronRight"
@@ -89,6 +89,7 @@ watch(() => route.path, () => {
                 'h-4 w-4 transition-transform duration-200',
                 isExpanded(item.id) ? 'rotate-90' : ''
               )"
+              color="currentColor"
             />
           </button>
 
@@ -105,7 +106,7 @@ watch(() => route.path, () => {
                   : 'text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground'
               ]"
             >
-              <Icon v-if="child.icon" :name="child.icon" class="h-4 w-4 shrink-0" />
+              <Icon v-if="child.icon" :name="child.icon" class="h-4 w-4 shrink-0" color="currentColor" />
               <span class="flex-1">{{ child.title }}</span>
             </RouterLink>
           </div>
@@ -123,7 +124,7 @@ watch(() => route.path, () => {
               : 'text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground'
           ]"
         >
-          <Icon v-if="item.icon" :name="item.icon" class="h-5 w-5 shrink-0" />
+          <Icon v-if="item.icon" :name="item.icon" class="h-5 w-5 shrink-0" color="currentColor" />
           <span class="flex-1">{{ item.title }}</span>
         </RouterLink>
       </template>
@@ -141,7 +142,7 @@ watch(() => route.path, () => {
         </div>
       </div>
       <button class="flex w-full items-center gap-3 rounded-lg px-3 py-2 text-sm text-sidebar-foreground/70 hover:bg-sidebar-accent hover:text-sidebar-accent-foreground transition-colors">
-        <Icon name="LogOut" class="h-4 w-4" />
+        <Icon name="LogOut" class="h-4 w-4" color="currentColor" />
         <span>Kijelentkezés</span>
       </button>
     </div>

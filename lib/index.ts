@@ -5,10 +5,10 @@ export { AdminMenuBuilder } from "./AdminMenuBuilder"
 export { cn } from "./utils"
 
 // UI Components
-export { default as DataCard } from "../ui/DataCard.vue"
-export { default as Icon } from "../ui/Icon.vue"
-export { default as StatsCard } from "../ui/StatsCard.vue"
-export { default as StatusBadge } from "../ui/StatusBadge.vue"
+export { default as DataCard } from "../components/ui/DataCard.vue"
+export { default as Icon } from "../components/ui/Icon.vue"
+export { default as StatsCard } from "../components/ui/StatsCard.vue"
+export { default as StatusBadge } from "../components/ui/StatusBadge.vue"
 
 // Layout Components
 export { default as AdminLayout } from "../layout/AdminLayout.vue"
