@@ -31,7 +31,7 @@ defineEmits<{
     <Icon
       :name="isSaving ? 'loading' : 'save'"
       :size="16"
-      :class="['mr-2', isSaving ? 'animate-spin' : '']"
+      :class="isSaving ? 'animate-spin mr-2' : 'mr-2'"
     />
     {{ isSaving ? `${label}...` : label }}
   </Button>

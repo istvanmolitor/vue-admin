@@ -19,7 +19,7 @@ const emit = defineEmits<{
 
 const router = useRouter()
 
-const handleClick = (event: MouseEvent) => {
+const handleClick = () => {
   if (props.to) {
     router.push(props.to)
   } else {
