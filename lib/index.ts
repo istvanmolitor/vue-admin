@@ -9,6 +9,7 @@ export { AdminMenuBuilder } from "./AdminMenuBuilder"
 
 // Utils
 export { cn } from "./utils"
+export { toastService } from "./toastService"
 
 // UI Components
 export { default as DataCard } from "../components/ui/DataCard.vue"
@@ -25,6 +26,7 @@ export { default as CardDescription } from "../components/ui/CardDescription.vue
 export { default as CardContent } from "../components/ui/CardContent.vue"
 export { default as CardFooter } from "../components/ui/CardFooter.vue"
 export { default as Input } from "../components/ui/Input.vue"
+export { default as InputError } from "../components/ui/InputError.vue"
 export { default as Label } from "../components/ui/Label.vue"
 export { default as Checkbox } from "../components/ui/Checkbox.vue"
 export { default as Checkboxes } from "../components/ui/Checkboxes.vue"

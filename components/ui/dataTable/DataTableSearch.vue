@@ -14,6 +14,7 @@ const emit = defineEmits<{
 }>()
 
 const internalValue = ref(props.modelValue)
+let timeout: any = null
 
 watch(() => props.modelValue, (newValue) => {
   internalValue.value = newValue
@@ -21,12 +22,15 @@ watch(() => props.modelValue, (newValue) => {
 
 watch(internalValue, (newValue) => {
   emit('update:modelValue', newValue)
-  if (newValue === '') {
+
+  if (timeout) clearTimeout(timeout)
+  timeout = setTimeout(() => {
     emit('search')
-  }
+  }, 300)
 })
 
 const handleEnter = () => {
+  if (timeout) clearTimeout(timeout)
   emit('search')
 }
 </script>
