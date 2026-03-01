@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Menu, Bell, Search } from 'lucide-vue-next'
+import Icon from '../ui/Icon.vue'
 
 defineProps<{ sidebarOpen: boolean; pageTitle: string }>()
 defineEmits<{ 'toggle-sidebar': [] }>()
@@ -12,7 +12,7 @@ defineEmits<{ 'toggle-sidebar': [] }>()
       @click="$emit('toggle-sidebar')"
       class="md:hidden rounded-lg p-2 hover:bg-muted transition-colors"
     >
-      <Menu class="h-5 w-5" />
+      <Icon name="Menu" class="h-5 w-5" />
     </button>
 
     <!-- Page title -->
@@ -21,7 +21,7 @@ defineEmits<{ 'toggle-sidebar': [] }>()
     <div class="flex flex-1 items-center justify-end gap-3">
       <!-- Search -->
       <div class="relative hidden sm:block">
-        <Search class="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+        <Icon name="Search" class="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
         <input
           type="text"
           placeholder="Keresés..."
@@ -31,7 +31,7 @@ defineEmits<{ 'toggle-sidebar': [] }>()
 
       <!-- Notifications -->
       <button class="relative rounded-lg p-2 hover:bg-muted transition-colors">
-        <Bell class="h-5 w-5 text-muted-foreground" />
+        <Icon name="Bell" class="h-5 w-5 text-muted-foreground" />
         <span class="absolute right-1.5 top-1.5 h-2 w-2 rounded-full bg-destructive"></span>
       </button>
 
@@ -42,4 +42,3 @@ defineEmits<{ 'toggle-sidebar': [] }>()
     </div>
   </header>
 </template>
-

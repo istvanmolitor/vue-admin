@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { LucideTrash2 } from 'lucide-vue-next'
+import Icon from '../Icon.vue'
 import Modal from '../Modal.vue'
 import Button from './Button.vue'
 import CancelButton from './CancelButton.vue'
 
-const props = defineProps<{
+defineProps<{
   title?: string
   message?: string
   confirmText?: string
@@ -43,7 +43,7 @@ const handleConfirm = () => {
       @click="openModal"
     >
       <slot>
-        <LucideTrash2 class="h-4 w-4" />
+        <Icon name="delete" class="h-4 w-4" />
       </slot>
     </Button>
 

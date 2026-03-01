@@ -1,6 +1,6 @@
 <script setup lang="ts" generic="TData">
-import { LucideArrowUpDown, LucideArrowUp, LucideArrowDown } from 'lucide-vue-next'
 import { ref } from 'vue'
+import Icon from '../Icon.vue'
 import DataTablePagination from './DataTablePagination.vue'
 import DataTableSearch from './DataTableSearch.vue'
 
@@ -100,9 +100,9 @@ const handlePageChange = (page: number) => {
                 @click="handleSort(String(column.key))"
               >
                 <span>{{ column.title || column.label }}</span>
-                <LucideArrowUpDown v-if="sort !== column.key" class="h-4 w-4" />
-                <LucideArrowUp v-else-if="direction === 'asc'" class="h-4 w-4" />
-                <LucideArrowDown v-else class="h-4 w-4" />
+                <Icon v-if="sort !== String(column.key)" name="ArrowUpDown" class="h-4 w-4" />
+                <Icon v-else-if="direction === 'asc'" name="ArrowUp" class="h-4 w-4" />
+                <Icon v-else name="ArrowDown" class="h-4 w-4" />
               </div>
               <template v-else>
                 {{ column.title || column.label }}

@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { LucideX } from 'lucide-vue-next'
 import { onMounted, onUnmounted } from 'vue'
+import Icon from './Icon.vue'
 
 const props = defineProps<{
   show: boolean
@@ -58,7 +58,7 @@ onUnmounted(() => {
               @click="close"
             >
               <span class="sr-only">Bezárás</span>
-              <LucideX class="h-5 w-5" />
+              <Icon name="X" class="h-5 w-5" />
             </button>
           </div>
 
