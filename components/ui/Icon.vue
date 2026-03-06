@@ -41,6 +41,7 @@ const iconAliases: Record<string, string> = {
   'arrow-up': 'ArrowUp',
   'arrow-down': 'ArrowDown',
   'arrow-up-down': 'ArrowUpDown',
+  lock: 'Lock',
 }
 
 const icon = computed(() => {

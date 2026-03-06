@@ -1,4 +1,4 @@
-import { MenuBuilder, type MenuItemConfig } from '../../ts-menu'
+import { MenuBuilder, type MenuItemConfig } from '@menu/index'
 
 export class AdminMenuBuilder extends MenuBuilder {
   build(menu: MenuItemConfig, menuName: string): MenuItemConfig {
