@@ -1,19 +1,31 @@
 <script setup lang="ts">
 import { ref, computed, watch } from 'vue'
-import { useRoute, RouterLink } from 'vue-router'
+import { useRoute, useRouter, RouterLink } from 'vue-router'
 import { cn } from '@admin/lib/utils'
 import Icon from '../../components/ui/Icon.vue'
 import { useMenu } from '@menu'
+import { useAuth } from '@user/composables/useAuth'
 import type { MenuItemConfig } from '@menu'
 
 defineProps<{ open: boolean }>()
 defineEmits<{ close: [] }>()
 
+const router = useRouter()
 const route = useRoute()
+const { logout } = useAuth()
 const { menu: adminMenuRaw } = useMenu('admin')
 const adminMenu = computed(() => adminMenuRaw.value || { children: [] })
 
 const expandedItems = ref<Set<string>>(new Set())
+
+const handleLogout = async () => {
+  try {
+    await logout()
+    router.push('/login')
+  } catch (error) {
+    console.error('Logout failed:', error)
+  }
+}
 
 const toggleItem = (id: string | undefined) => {
   if (!id) return
@@ -140,7 +152,10 @@ watch(() => route.path, () => {
           <p class="text-xs text-sidebar-foreground/60 truncate">admin@example.com</p>
         </div>
       </div>
-      <button class="flex w-full items-center gap-3 rounded-lg px-3 py-2 text-sm text-sidebar-foreground/70 hover:bg-sidebar-accent hover:text-sidebar-accent-foreground transition-colors">
+      <button
+        @click="handleLogout"
+        class="flex w-full items-center gap-3 rounded-lg px-3 py-2 text-sm text-sidebar-foreground/70 hover:bg-sidebar-accent hover:text-sidebar-accent-foreground transition-colors"
+      >
         <Icon name="LogOut" class="h-4 w-4" />
         <span>Kijelentkezés</span>
       </button>
