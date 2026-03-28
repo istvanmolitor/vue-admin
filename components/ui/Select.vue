@@ -5,7 +5,7 @@ interface Option {
 }
 
 defineProps<{
-  modelValue: string | number
+  modelValue?: string | number | null
   options: Option[]
   placeholder?: string
 }>()
@@ -13,6 +13,14 @@ defineProps<{
 const emit = defineEmits<{
   (e: 'update:modelValue', value: string | number): void
 }>()
+
+const handleChange = (event: Event) => {
+  const target = event.target as HTMLSelectElement
+  const value = target.value
+  // Convert to number if it's a numeric string
+  const numValue = Number(value)
+  emit('update:modelValue', isNaN(numValue) ? value : numValue)
+}
 </script>
 
 <template>
