@@ -40,4 +40,5 @@ export { default as Select } from './components/ui/Select.vue'
 // Lib
 export * from './lib/utils'
 export * from './lib/AdminMenuBuilder'
+export * from './lib/types'
 export { toastService } from './lib/toastService'
