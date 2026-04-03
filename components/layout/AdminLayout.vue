@@ -2,6 +2,7 @@
 import { ref } from 'vue'
 import AppSidebar from './AppSidebar.vue'
 import AppHeader from './AppHeader.vue'
+import ToastContainer from '../ui/ToastContainer.vue'
 
 defineProps<{ pageTitle: string }>()
 
@@ -27,6 +28,8 @@ const sidebarOpen = ref(false)
         <slot />
       </main>
     </div>
+
+    <ToastContainer />
   </div>
 </template>
 
