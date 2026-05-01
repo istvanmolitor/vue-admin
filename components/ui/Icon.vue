@@ -49,6 +49,8 @@ const iconAliases: Record<string, string> = {
   box: 'Box',
   image: 'Image',
   video: 'Video',
+  code: 'Code',
+  columns: 'Columns',
   'arrow-up': 'ArrowUp',
   'arrow-down': 'ArrowDown',
   'arrow-up-down': 'ArrowUpDown',
