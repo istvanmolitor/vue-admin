@@ -17,9 +17,7 @@ const emit = defineEmits<{
 const handleChange = (event: Event) => {
   const target = event.target as HTMLSelectElement
   const value = target.value
-  // Convert to number if it's a numeric string
-  const numValue = Number(value)
-  emit('update:modelValue', isNaN(numValue) ? value : numValue)
+  emit('update:modelValue', value)
 }
 </script>
 
