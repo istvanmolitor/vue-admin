@@ -1,5 +1,5 @@
 <script setup lang="ts" generic="TData">
-import { ref } from 'vue'
+import { ref, withDefaults } from 'vue'
 import Icon from '../Icon.vue'
 import DataTablePagination from './DataTablePagination.vue'
 import DataTableSearch from './DataTableSearch.vue'
@@ -14,13 +14,13 @@ export interface Column<TData = any> {
 }
 
 export interface PaginationMeta {
-  current_page: number
-  last_page: number
+  current_page: number | number[]
+  last_page: number | number[]
   per_page: number
-  total: number
+  total: number | number[]
 }
 
-const props = defineProps<{
+const props = withDefaults(defineProps<{
   columns: Column[]
   data: TData[]
   loading?: boolean
@@ -29,7 +29,11 @@ const props = defineProps<{
   searchPlaceholder?: string
   defaultSort?: string
   defaultDirection?: 'asc' | 'desc'
-}>()
+}>(), {
+  searchable: true,
+  searchPlaceholder: 'Keresés...',
+  defaultDirection: 'asc'
+})
 
 const emit = defineEmits<{
   (e: 'fetch', params: { search?: string; sort?: string; direction?: 'asc' | 'desc'; page?: number }): void
