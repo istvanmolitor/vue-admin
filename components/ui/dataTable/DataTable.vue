@@ -108,6 +108,7 @@ const handlePageChange = (page: number) => {
                 {{ column.title || column.label }}
               </template>
             </th>
+            <th v-if="$slots['row-actions']" class="h-12 px-4 text-right align-middle font-medium text-muted-foreground"></th>
           </tr>
         </thead>
         <tbody class="[&_tr:last-child]:border-0">
@@ -135,8 +136,10 @@ const handlePageChange = (page: number) => {
                   </slot>
                 </slot>
               </td>
-              <td v-if="$slots['row-actions']" class="p-4 align-middle text-right">
-                <slot name="row-actions" :row="row"></slot>
+              <td v-if="$slots['row-actions']" class="p-4 align-middle">
+                <div class="flex items-center justify-end gap-2">
+                  <slot name="row-actions" :row="row"></slot>
+                </div>
               </td>
             </tr>
             <tr v-if="data.length === 0">
