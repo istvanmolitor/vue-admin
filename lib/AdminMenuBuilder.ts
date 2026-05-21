@@ -11,7 +11,7 @@ export class AdminMenuBuilder extends MenuBuilder {
         id: 'dashboard',
         title: 'Dashboard',
         icon: 'LayoutDashboard',
-        path: '/',
+        path: '/admin/dashboard',
         children: [],
         order: 10,
       },
