@@ -6,6 +6,9 @@ export { default as AppSidebar } from "../components/layout/AppSidebar.vue"
 
 // Admin Menu Builder
 export { AdminMenuBuilder } from "./AdminMenuBuilder"
+export { DashboardWidgetBuilder } from "./dashboard"
+export type { DashboardWidgetConfig } from "./dashboard"
+export { dashboardRegistry, dashboardUpdateTrigger } from "./DashboardRegistry"
 
 // Utils
 export { cn } from "./utils"
