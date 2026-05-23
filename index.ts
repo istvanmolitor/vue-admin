@@ -36,6 +36,7 @@ export { default as DeleteButton } from './components/ui/button/DeleteButton.vue
 export { default as EditButton } from './components/ui/button/EditButton.vue'
 export { default as MultiSelect } from './components/ui/MultiSelect.vue'
 export { default as Select } from './components/ui/Select.vue'
+export { default as Tabs } from './components/ui/Tabs.vue'
 
 // Lib
 export * from './lib/utils'
