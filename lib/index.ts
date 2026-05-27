@@ -47,6 +47,7 @@ export { default as DataTableSearch } from "../components/ui/dataTable/DataTable
 export { default as Modal } from "../components/ui/Modal.vue"
 export { default as DeleteButton } from "../components/ui/button/DeleteButton.vue"
 export { default as EditButton } from "../components/ui/button/EditButton.vue"
+export { default as ShowButton } from "../components/ui/button/ShowButton.vue"
 export { default as MultiSelect } from "../components/ui/MultiSelect.vue"
 export { default as Select } from "../components/ui/Select.vue"
 export { default as FieldError } from "../components/ui/FieldError.vue"
