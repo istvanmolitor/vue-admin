@@ -1,5 +1,6 @@
 <script setup lang="ts" generic="TData">
 import { ref, withDefaults } from 'vue'
+import LoadingSpinner from '@admin/components/ui/LoadingSpinner.vue'
 import Icon from '../Icon.vue'
 import DataTablePagination from './DataTablePagination.vue'
 import DataTableSearch from './DataTableSearch.vue'
@@ -119,7 +120,7 @@ const handlePageChange = (page: number) => {
           <template v-if="loading && data.length === 0">
             <tr>
               <td :colspan="columns.length + ($slots['row-actions'] ? 1 : 0)" class="h-24 text-center align-middle">
-                Betöltés...
+                <LoadingSpinner label="Betöltés..." />
               </td>
             </tr>
           </template>
