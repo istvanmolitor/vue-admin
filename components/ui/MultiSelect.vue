@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
+import Icon from './Icon.vue'
 
 interface Item {
   id: number | string
@@ -65,11 +66,9 @@ const toggle = (item: Item) => {
       class="flex h-10 w-full items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
       @click="isOpen = !isOpen"
     >
-      <span v-if="modelValue.length > 0" class="truncate">{{ selectedLabels }}</span>
-      <span v-else class="text-muted-foreground">{{ placeholder || 'Válassz...' }}</span>
-      <svg class="h-4 w-4 opacity-50 ml-2 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-      </svg>
+       <span v-if="modelValue.length > 0" class="truncate">{{ selectedLabels }}</span>
+       <span v-else class="text-muted-foreground">{{ placeholder || 'Válassz...' }}</span>
+       <Icon name="chevron-down" class="h-4 w-4 opacity-50 ml-2 shrink-0" />
     </button>
 
     <div
@@ -88,19 +87,17 @@ const toggle = (item: Item) => {
         <div v-if="filteredItems.length === 0" class="py-2 px-3 text-sm text-muted-foreground">
           {{ emptyMessage || 'Nincs találat.' }}
         </div>
-        <button
-          v-for="item in filteredItems"
-          :key="item[valueKey]"
-          type="button"
-          class="flex w-full items-center gap-2 rounded-sm px-2 py-1.5 text-sm hover:bg-accent hover:text-accent-foreground"
-          @click="toggle(item)"
-        >
-          <svg v-if="isSelected(item)" class="h-4 w-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
-          </svg>
-          <span v-else class="h-4 w-4 shrink-0" />
-          {{ item[labelKey] }}
-        </button>
+         <button
+           v-for="item in filteredItems"
+           :key="item[valueKey]"
+           type="button"
+           class="flex w-full items-center gap-2 rounded-sm px-2 py-1.5 text-sm hover:bg-accent hover:text-accent-foreground"
+           @click="toggle(item)"
+         >
+           <Icon v-if="isSelected(item)" name="check" class="h-4 w-4 shrink-0" />
+           <span v-else class="h-4 w-4 shrink-0" />
+           {{ item[labelKey] }}
+         </button>
       </div>
     </div>
 
