@@ -20,6 +20,7 @@ export { default as Icon } from "../components/ui/Icon.vue"
 export { default as StatsCard } from "../components/ui/StatsCard.vue"
 export { default as StatusBadge } from "../components/ui/StatusBadge.vue"
 export { default as LoadingSpinner } from "../components/ui/LoadingSpinner.vue"
+export { default as TreeView } from "../components/ui/TreeView.vue"
 
 // UI components
 export { default as Button } from "../components/ui/button/Button.vue"

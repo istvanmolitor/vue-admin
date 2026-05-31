@@ -29,6 +29,7 @@ export { default as DataCard } from './components/ui/DataCard.vue'
 export { default as StatsCard } from './components/ui/StatsCard.vue'
 export { default as StatusBadge } from './components/ui/StatusBadge.vue'
 export { default as LoadingSpinner } from './components/ui/LoadingSpinner.vue'
+export { default as TreeView } from './components/ui/TreeView.vue'
 
 export { default as InputError } from './components/ui/InputError.vue'
 export { default as FieldError } from './components/ui/FieldError.vue'
