@@ -1,16 +1,18 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import Icon from '../ui/Icon.vue'
 import { useMenu } from '@menu'
 import { useAuth } from '@user/composables/useAuth'
+import { authService } from '@user/services/authService'
 
 defineProps<{ sidebarOpen: boolean; pageTitle: string }>()
 defineEmits<{ 'toggle-sidebar': [] }>()
 
 const router = useRouter()
-const { menuItems } = useMenu('user')
 const { user, logout } = useAuth()
+const userPermissions = computed(() => user.value?.permissions ?? authService.getPermissions())
+const { menuItems } = useMenu('user', userPermissions)
 const dropdownOpen = ref(false)
 
 const userInitials = () => {

@@ -5,6 +5,7 @@ import { cn } from '@admin/lib/utils'
 import Icon from '../../components/ui/Icon.vue'
 import { useMenu } from '@menu'
 import { useAuth } from '@user/composables/useAuth'
+import { authService } from '@user/services/authService'
 import type { MenuItemConfig } from '@menu'
 
 defineProps<{ open: boolean }>()
@@ -12,8 +13,9 @@ defineEmits<{ close: [] }>()
 
 const router = useRouter()
 const route = useRoute()
-const { logout } = useAuth()
-const { menu: adminMenuRaw } = useMenu('admin')
+const { user, logout } = useAuth()
+const userPermissions = computed(() => user.value?.permissions ?? authService.getPermissions())
+const { menu: adminMenuRaw } = useMenu('admin', userPermissions)
 const adminMenu = computed(() => adminMenuRaw.value || { children: [] })
 
 const expandedItems = ref<Set<string>>(new Set())
