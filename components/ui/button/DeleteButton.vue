@@ -1,9 +1,8 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import Icon from '../Icon.vue'
-import Modal from '../Modal.vue'
+import ConfirmDialog from '../ConfirmDialog.vue'
 import Button from './Button.vue'
-import CancelButton from './CancelButton.vue'
 
 defineProps<{
   title?: string
@@ -47,26 +46,15 @@ const handleConfirm = () => {
       </slot>
     </Button>
 
-    <Modal
+    <ConfirmDialog
       :show="showModal"
       :title="title || 'Törlés megerősítése'"
+      :message="message || 'Biztosan törölni szeretné ezt az elemet? Ez a művelet nem vonható vissza.'"
+      :confirm-text="confirmText || 'Törlés'"
+      :cancel-text="cancelText || 'Mégse'"
+      variant="destructive"
       @close="closeModal"
-    >
-      <p class="text-sm text-muted-foreground">
-        {{ message || 'Biztosan törölni szeretné ezt az elemet? Ez a művelet nem vonható vissza.' }}
-      </p>
-
-      <template #footer>
-        <Button
-          variant="destructive"
-          @click="handleConfirm"
-        >
-          {{ confirmText || 'Törlés' }}
-        </Button>
-        <CancelButton @click="closeModal">
-          {{ cancelText || 'Mégse' }}
-        </CancelButton>
-      </template>
-    </Modal>
+      @confirm="handleConfirm"
+    />
   </div>
 </template>
