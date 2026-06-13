@@ -8,6 +8,9 @@ const props = defineProps<{
   modelValue?: (string | number)[]
   options?: { label: string; value: string | number }[]
   items?: { id: string | number; name: string; [key: string]: any }[]
+  label?: string
+  emptyMessage?: string
+  idPrefix?: string
   class?: HTMLAttributes['class']
 }>()
 
@@ -21,36 +24,53 @@ const modelValue = useVModel(props, 'modelValue', emits, {
 })
 
 const computedOptions = computed(() => {
-  if (props.options) return props.options
+  if (props.options) {
+    return props.options
+  }
+
   if (props.items) {
     return props.items.map(item => ({
       label: item.name,
       value: item.id
     }))
   }
+
   return []
 })
 
-const toggle = (value: string | number) => {
+const checkboxId = (value: string | number) => `${props.idPrefix ?? 'checkbox'}-${value}`
+
+const updateValue = (value: string | number, checked: boolean) => {
   const current = [...(modelValue.value || [])]
   const index = current.indexOf(value)
-  if (index > -1) {
-    current.splice(index, 1)
-  } else {
+
+  if (checked && index === -1) {
     current.push(value)
   }
+
+  if (!checked && index > -1) {
+    current.splice(index, 1)
+  }
+
   modelValue.value = current
 }
 </script>
 
 <template>
   <div :class="props.class" class="flex flex-col gap-2">
+    <Label v-if="props.label" class="mb-1">{{ props.label }}</Label>
+
+    <div v-if="computedOptions.length === 0" class="text-sm text-muted-foreground">
+      {{ props.emptyMessage ?? 'Nincsenek elérhető elemek.' }}
+    </div>
+
     <div v-for="option in computedOptions" :key="option.value" class="flex items-center space-x-2">
       <Checkbox
+        :id="checkboxId(option.value)"
         :model-value="(modelValue || []).includes(option.value)"
-        @update:model-value="toggle(option.value)"
+        @update:model-value="updateValue(option.value, $event)"
       />
-      <Label @click="toggle(option.value)" class="cursor-pointer">{{ option.label }}</Label>
+      <Label :for="checkboxId(option.value)" class="cursor-pointer">{{ option.label }}</Label>
     </div>
   </div>
 </template>
