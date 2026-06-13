@@ -1,5 +1,5 @@
 <script setup lang="ts">
-type Status = 'active' | 'inactive' | 'pending' | 'completed' | 'cancelled'
+type Status = 'active' | 'inactive' | 'pending' | 'completed' | 'cancelled' | 'blocked'
 
 defineProps<{ status: Status }>()
 
@@ -9,6 +9,7 @@ const statusConfig: Record<Status, { label: string; classes: string }> = {
   pending:   { label: 'Függőben',    classes: 'bg-yellow-100 text-yellow-700 dark:bg-yellow-950 dark:text-yellow-400' },
   completed: { label: 'Teljesített', classes: 'bg-blue-100 text-blue-700 dark:bg-blue-950 dark:text-blue-400' },
   cancelled: { label: 'Törölve',     classes: 'bg-red-100 text-red-700 dark:bg-red-950 dark:text-red-400' },
+  blocked:   { label: 'Blokkolt',    classes: 'bg-orange-100 text-orange-700 dark:bg-orange-950 dark:text-orange-400' },
 }
 </script>
 
