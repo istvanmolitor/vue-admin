@@ -3,6 +3,7 @@ export { default as AdminLayout } from "../components/layout/AdminLayout.vue"
 export { default as AuthLayout } from "../components/layout/AuthLayout.vue"
 export { default as AppHeader } from "../components/layout/AppHeader.vue"
 export { default as AppSidebar } from "../components/layout/AppSidebar.vue"
+export { default as GlobalSearch } from "../components/GlobalSearch.vue"
 
 // Admin Menu Builder
 export { AdminMenuBuilder } from "./AdminMenuBuilder"

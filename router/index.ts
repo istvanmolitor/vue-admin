@@ -43,6 +43,12 @@ const adminRoutes: RouteRecordRaw[] = [
     name: 'admin.dashboard',
     component: () => import('../views/Dashboard.vue'),
     meta: { requiresAuth: true, role: 'admin' }
+  },
+  {
+    path: '/admin/search',
+    name: 'admin.search',
+    component: () => import('../views/SearchResults.vue'),
+    meta: { requiresAuth: true, role: 'admin' }
   }
 ];
 

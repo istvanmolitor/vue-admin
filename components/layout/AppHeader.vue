@@ -2,6 +2,7 @@
 import { computed, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import Icon from '../ui/Icon.vue'
+import GlobalSearch from '../GlobalSearch.vue'
 import { useMenu } from '@menu'
 import { useAuth } from '@user/composables/useAuth'
 import { authService } from '@user/services/authService'
@@ -51,14 +52,7 @@ const handleMenuItemClick = async (item: { path?: string; meta?: Record<string, 
 
     <div class="flex flex-1 items-center justify-end gap-3">
       <!-- Search -->
-      <div class="relative hidden sm:block">
-        <Icon name="Search" class="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-        <input
-          type="text"
-          placeholder="Keresés..."
-          class="h-9 w-56 rounded-lg border border-border bg-background pl-9 pr-3 text-sm focus:outline-none focus:ring-2 focus:ring-ring"
-        />
-      </div>
+      <GlobalSearch />
 
       <!-- Notifications -->
       <button class="relative rounded-lg p-2 hover:bg-muted transition-colors">
