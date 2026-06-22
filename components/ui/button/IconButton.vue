@@ -5,8 +5,8 @@ import Icon from '../Icon.vue'
 defineProps<{
   icon: string
   disabled?: boolean
-  size?: 'sm' | 'default' | 'lg'
-  variant?: 'ghost' | 'outline' | 'destructive' | 'default'
+  size?: 'default' | 'sm' | 'lg' | 'icon' | 'icon-sm' | 'icon-lg'
+  variant?: 'default' | 'destructive' | 'outline' | 'secondary' | 'ghost' | 'link'
 }>()
 
 const emit = defineEmits<{
@@ -17,8 +17,8 @@ const emit = defineEmits<{
 <template>
   <Button
     type="button"
-    :variant="variant ?? 'ghost'"
-    :size="size ?? 'sm'"
+    :variant="variant ?? 'outline'"
+    :size="size ?? 'icon-sm'"
     :disabled="disabled"
     @click="emit('click', $event)"
   >
