@@ -37,13 +37,13 @@ const confirm = (): void => {
   <Modal :show="show" :title="title" @close="close">
     <div class="relative overflow-hidden rounded-2xl border border-border/60 bg-gradient-to-br from-background via-background to-muted/40 p-5">
       <div
-        class="pointer-events-none absolute inset-x-0 top-0 h-20 opacity-80"
+        class="pointer-events-none absolute inset-0 opacity-80"
         :class="variant === 'destructive'
-          ? 'bg-gradient-to-r from-red-500/10 via-orange-500/10 to-transparent'
-          : 'bg-gradient-to-r from-sky-500/10 via-cyan-500/10 to-transparent'"
+          ? 'bg-gradient-to-br from-red-500/10 via-orange-500/10 to-transparent'
+          : 'bg-gradient-to-br from-sky-500/10 via-cyan-500/10 to-transparent'"
       />
 
-      <div class="relative flex flex-col items-start gap-4 sm:flex-row">
+      <div class="relative flex items-start gap-4">
         <div
           class="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border"
           :class="variant === 'destructive'
@@ -56,12 +56,6 @@ const confirm = (): void => {
         <div class="min-w-0 flex-1 space-y-2">
           <p class="max-h-[45vh] overflow-y-auto whitespace-pre-wrap break-words text-sm leading-6 text-foreground [overflow-wrap:anywhere] pr-1">
             {{ message }}
-          </p>
-          <p
-            class="break-words text-xs font-medium uppercase tracking-[0.18em] [overflow-wrap:anywhere]"
-            :class="variant === 'destructive' ? 'text-red-500' : 'text-sky-600'"
-          >
-            {{ variant === 'destructive' ? 'Végleges művelet' : 'Megerősítés szükséges' }}
           </p>
         </div>
       </div>
