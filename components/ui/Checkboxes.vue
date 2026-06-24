@@ -70,7 +70,7 @@ const updateValue = (value: string | number, checked: boolean) => {
         :model-value="(modelValue || []).includes(option.value)"
         @update:model-value="updateValue(option.value, $event)"
       />
-      <Label :for="checkboxId(option.value)" class="cursor-pointer">{{ option.label }}</Label>
+      <Label :for="checkboxId(option.value)" variant="checkbox">{{ option.label }}</Label>
     </div>
   </div>
 </template>

@@ -4,6 +4,7 @@ import { cn } from '@admin/lib/utils'
 
 const props = defineProps<{
   class?: HTMLAttributes['class']
+  variant?: 'default' | 'checkbox'
 }>()
 </script>
 
@@ -12,6 +13,7 @@ const props = defineProps<{
     :class="
       cn(
         'text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70',
+        props.variant === 'checkbox' && 'cursor-pointer',
         props.class,
       )
     "
