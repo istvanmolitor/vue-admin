@@ -10,10 +10,12 @@ const props = withDefaults(defineProps<{
   placeholder?: string
   type?: string
   required?: boolean
+  disabled?: boolean
   errors?: string | string[] | null
 }>(), {
   type: 'text',
   required: false,
+  disabled: false,
 })
 
 const emits = defineEmits<{
@@ -25,6 +27,6 @@ const modelValue = useVModel(props, 'modelValue', emits, { passive: true })
 
 <template>
   <FieldWrapper :id="id" :label="label" :required="required" :errors="errors">
-    <Input :id="id" v-model="modelValue" :type="type" :placeholder="placeholder" />
+    <Input :id="id" v-model="modelValue" :type="type" :placeholder="placeholder" :disabled="disabled" />
   </FieldWrapper>
 </template>
