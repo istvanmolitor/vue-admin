@@ -55,6 +55,12 @@ const iconAliases: Record<string, string> = {
   'arrow-down': 'ArrowDown',
   'arrow-up-down': 'ArrowUpDown',
   lock: 'Lock',
+  pilcrow: 'Pilcrow',
+  'gallery-thumbnails': 'GalleryThumbnails',
+  layout: 'Layout',
+  'layout-template': 'LayoutTemplate',
+  newspaper: 'Newspaper',
+  check: 'Check',
 }
 
 const icon = computed(() => {
