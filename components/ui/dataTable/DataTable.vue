@@ -1,5 +1,6 @@
 <script setup lang="ts" generic="TData">
-import { ref, withDefaults } from 'vue'
+import { ref, computed, withDefaults, onMounted, watch } from 'vue'
+import { createApiClient } from '@user/services/apiClient'
 import LoadingSpinner from '@admin/components/ui/LoadingSpinner.vue'
 import Icon from '../Icon.vue'
 import DataTablePagination from './DataTablePagination.vue'
@@ -22,36 +23,99 @@ export interface PaginationMeta {
 }
 
 const props = withDefaults(defineProps<{
+  url?: string
+  extraParams?: Record<string, any>
   columns?: Column[]
-  data: TData[]
+  data?: TData[]
   loading?: boolean
   pagination?: PaginationMeta
   searchable?: boolean
   searchPlaceholder?: string
-  defaultSort?: string
-  defaultDirection?: 'asc' | 'desc'
 }>(), {
   columns: () => [],
   searchable: true,
   searchPlaceholder: 'Keresés...',
-  defaultDirection: 'asc'
 })
 
 const emit = defineEmits<{
   (e: 'fetch', params: { search?: string; sort?: string; direction?: 'asc' | 'desc'; page?: number }): void
 }>()
 
+const api = createApiClient()
+
+const internalData = ref<TData[]>([])
+const internalColumns = ref<Column[]>([])
+const internalPagination = ref<PaginationMeta>({ current_page: 1, last_page: 1, per_page: 10, total: 0 })
+const internalLoading = ref(false)
+const serverSearchable = ref<boolean | null>(null)
+const serverSearchPlaceholder = ref<string | null>(null)
+
+const resolvedData = computed(() => props.url ? internalData.value as TData[] : (props.data ?? []))
+const resolvedColumns = computed(() => props.url ? internalColumns.value : props.columns ?? [])
+const resolvedLoading = computed(() => props.url ? internalLoading.value : (props.loading ?? false))
+const resolvedPagination = computed(() => props.url ? internalPagination.value : props.pagination)
+const resolvedSearchable = computed(() => serverSearchable.value !== null ? serverSearchable.value : props.searchable)
+const resolvedSearchPlaceholder = computed(() => serverSearchPlaceholder.value ?? props.searchPlaceholder)
+
 const search = ref('')
-const sort = ref(props.defaultSort || '')
-const direction = ref<'asc' | 'desc'>(props.defaultDirection || 'asc')
+const sort = ref('')
+const direction = ref<'asc' | 'desc'>('asc')
+const currentPage = ref(1)
+
+const fetchData = async (params: { search?: string; sort?: string; direction?: 'asc' | 'desc'; page?: number } = {}) => {
+  if (!props.url) return
+  try {
+    internalLoading.value = true
+    const response = await api.get(props.url, { params: { ...props.extraParams, ...params } })
+    const raw = response.data.data
+    internalData.value = Array.isArray(raw) ? raw : (raw?.data ?? [])
+    if (response.data.meta) {
+      internalPagination.value = response.data.meta
+    }
+    internalColumns.value = (response.data.columns ?? []) as Column[]
+    if (response.data.filters) {
+      sort.value = response.data.filters.sort ?? sort.value
+      direction.value = response.data.filters.direction ?? direction.value
+    }
+    if (response.data.config) {
+      serverSearchable.value = response.data.config.searchable ?? null
+      serverSearchPlaceholder.value = response.data.config.search_placeholder ?? null
+    }
+    if (params.page !== undefined) {
+      currentPage.value = params.page
+    }
+  } finally {
+    internalLoading.value = false
+  }
+}
+
+watch(
+  () => props.extraParams,
+  () => {
+    fetchData({ search: search.value, sort: sort.value, direction: direction.value, page: 1 })
+  },
+  { deep: true }
+)
+
+onMounted(() => {
+  if (props.url) {
+    fetchData({ sort: sort.value, direction: direction.value, page: 1 })
+  }
+})
+
+const refresh = () => {
+  fetchData({ search: search.value, sort: sort.value, direction: direction.value, page: currentPage.value })
+}
+
+defineExpose({ refresh })
 
 const handleSearch = () => {
-  emit('fetch', {
-    search: search.value,
-    sort: sort.value,
-    direction: direction.value,
-    page: 1
-  })
+  if (props.url) {
+    currentPage.value = 1
+    fetchData({ search: search.value, sort: sort.value, direction: direction.value, page: 1 })
+  } else {
+    emit('fetch', { search: search.value, sort: sort.value, direction: direction.value, page: 1 })
+  }
 }
 
 const handleSort = (key: string) => {
@@ -61,21 +125,20 @@ const handleSort = (key: string) => {
     sort.value = key
     direction.value = 'asc'
   }
-  emit('fetch', {
-    search: search.value,
-    sort: sort.value,
-    direction: direction.value,
-    page: 1
-  })
+  if (props.url) {
+    fetchData({ search: search.value, sort: sort.value, direction: direction.value, page: 1 })
+  } else {
+    emit('fetch', { search: search.value, sort: sort.value, direction: direction.value, page: 1 })
+  }
 }
 
 const handlePageChange = (page: number) => {
-  emit('fetch', {
-    search: search.value,
-    sort: sort.value,
-    direction: direction.value,
-    page
-  })
+  if (props.url) {
+    currentPage.value = page
+    fetchData({ search: search.value, sort: sort.value, direction: direction.value, page })
+  } else {
+    emit('fetch', { search: search.value, sort: sort.value, direction: direction.value, page })
+  }
 }
 </script>
 
@@ -83,9 +146,9 @@ const handlePageChange = (page: number) => {
   <div class="w-full space-y-4">
     <div class="flex items-center justify-between">
       <DataTableSearch
-        v-if="searchable"
+        v-if="resolvedSearchable"
         v-model="search"
-        :placeholder="searchPlaceholder"
+        :placeholder="resolvedSearchPlaceholder"
         @search="handleSearch"
       />
       <slot name="actions"></slot>
@@ -95,7 +158,7 @@ const handlePageChange = (page: number) => {
         <thead class="[&_tr]:border-b">
           <tr class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
             <th
-              v-for="column in columns"
+              v-for="column in resolvedColumns"
               :key="String(column.key)"
               :class="['h-12 px-4 text-left align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0', column.class]"
               :style="{ width: column.width }"
@@ -118,21 +181,21 @@ const handlePageChange = (page: number) => {
           </tr>
         </thead>
         <tbody class="[&_tr:last-child]:border-0">
-          <template v-if="loading && data.length === 0">
+          <template v-if="resolvedLoading && resolvedData.length === 0">
             <tr>
-              <td :colspan="columns.length + ($slots['row-actions'] ? 1 : 0)" class="h-24 text-center align-middle">
+              <td :colspan="resolvedColumns.length + ($slots['row-actions'] ? 1 : 0)" class="h-24 text-center align-middle">
                 <LoadingSpinner label="Betöltés..." />
               </td>
             </tr>
           </template>
           <template v-else>
             <tr
-              v-for="(row, index) in data"
+              v-for="(row, index) in resolvedData"
               :key="index"
               class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted"
             >
               <td
-                v-for="column in columns"
+                v-for="column in resolvedColumns"
                 :key="String(column.key)"
                 :class="['p-4 align-middle [&:has([role=checkbox])]:pr-0', column.class]"
               >
@@ -148,8 +211,8 @@ const handlePageChange = (page: number) => {
                 </div>
               </td>
             </tr>
-            <tr v-if="data.length === 0">
-              <td :colspan="columns.length + ($slots['row-actions'] ? 1 : 0)" class="h-24 text-center align-middle">
+            <tr v-if="resolvedData.length === 0">
+              <td :colspan="resolvedColumns.length + ($slots['row-actions'] ? 1 : 0)" class="h-24 text-center align-middle">
                 <slot name="empty">
                   Nincs találat.
                 </slot>
@@ -160,9 +223,9 @@ const handlePageChange = (page: number) => {
       </table>
     </div>
     <DataTablePagination
-      v-if="pagination"
-      :pagination="pagination"
-      :loading="loading"
+      v-if="resolvedPagination"
+      :pagination="resolvedPagination"
+      :loading="resolvedLoading"
       @change="handlePageChange"
     />
   </div>
