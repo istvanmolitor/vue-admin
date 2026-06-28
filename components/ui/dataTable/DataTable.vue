@@ -22,7 +22,7 @@ export interface PaginationMeta {
 }
 
 const props = withDefaults(defineProps<{
-  columns: Column[]
+  columns?: Column[]
   data: TData[]
   loading?: boolean
   pagination?: PaginationMeta
@@ -31,6 +31,7 @@ const props = withDefaults(defineProps<{
   defaultSort?: string
   defaultDirection?: 'asc' | 'desc'
 }>(), {
+  columns: () => [],
   searchable: true,
   searchPlaceholder: 'Keresés...',
   defaultDirection: 'asc'
