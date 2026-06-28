@@ -143,25 +143,6 @@ watch(() => route.path, () => {
       </template>
     </nav>
 
-    <!-- Footer -->
-    <div class="border-t border-sidebar-border p-3 space-y-1">
-      <div class="flex items-center gap-3 px-3 py-2">
-        <div class="flex h-8 w-8 items-center justify-center rounded-full bg-sidebar-accent text-sidebar-accent-foreground font-semibold text-sm">
-          JD
-        </div>
-        <div class="flex-1 min-w-0">
-          <p class="text-sm font-medium truncate">John Doe</p>
-          <p class="text-xs text-sidebar-foreground/60 truncate">admin@example.com</p>
-        </div>
-      </div>
-      <button
-        @click="handleLogout"
-        class="flex w-full items-center gap-3 rounded-lg px-3 py-2 text-sm text-sidebar-foreground/70 hover:bg-sidebar-accent hover:text-sidebar-accent-foreground transition-colors"
-      >
-        <Icon name="LogOut" class="h-4 w-4" />
-        <span>Kijelentkezés</span>
-      </button>
-    </div>
   </aside>
 </template>
 
