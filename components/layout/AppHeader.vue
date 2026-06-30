@@ -54,12 +54,6 @@ const handleMenuItemClick = async (item: { path?: string; meta?: Record<string, 
       <!-- Search -->
       <GlobalSearch />
 
-      <!-- Notifications -->
-      <button class="relative rounded-lg p-2 hover:bg-muted transition-colors">
-        <Icon name="Bell" class="h-5 w-5 text-muted-foreground" />
-        <span class="absolute right-1.5 top-1.5 h-2 w-2 rounded-full bg-destructive"></span>
-      </button>
-
       <!-- Avatar -->
       <div class="relative">
         <button
