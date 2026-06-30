@@ -18,6 +18,8 @@ const userPermissions = computed(() => user.value?.permissions ?? authService.ge
 const { menu: adminMenuRaw } = useMenu('admin', userPermissions)
 const adminMenu = computed(() => adminMenuRaw.value || { children: [] })
 
+const appName = import.meta.env.VITE_APP_NAME || 'AdminPanel'
+
 const expandedItems = ref<Set<string>>(new Set())
 
 const handleLogout = async () => {
@@ -78,7 +80,7 @@ watch(() => route.path, () => {
       <div class="flex h-8 w-8 items-center justify-center rounded-lg bg-sidebar-primary">
         <span class="text-sm font-bold text-sidebar-primary-foreground">A</span>
       </div>
-      <span class="text-lg font-bold">AdminPanel</span>
+      <span class="text-lg font-bold">{{ appName }}</span>
     </div>
 
     <!-- Navigation -->
