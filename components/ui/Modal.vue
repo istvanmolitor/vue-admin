@@ -1,15 +1,24 @@
 <script setup lang="ts">
-import { onMounted, onUnmounted } from 'vue'
+import { computed, onMounted, onUnmounted } from 'vue'
 import Icon from './Icon.vue'
 
 const props = defineProps<{
   show: boolean
   title?: string
+  size?: 'sm' | 'md' | 'lg' | 'xl' | '2xl'
 }>()
 
 const emit = defineEmits<{
   (e: 'close'): void
 }>()
+
+const sizeStyle = computed(() => ({
+  'sm':  '24rem',
+  'md':  '28rem',
+  'lg':  '32rem',
+  'xl':  '36rem',
+  '2xl': '95vw',
+}[props.size ?? 'lg']))
 
 const close = () => {
   emit('close')
@@ -46,9 +55,11 @@ onUnmounted(() => {
 
         <!-- Modal Content -->
         <div
-          class="relative w-full max-w-lg transform overflow-hidden rounded-lg bg-background p-6 shadow-xl transition-all sm:my-8"
+          class="relative w-full transform rounded-lg bg-background shadow-xl transition-all sm:my-8 flex flex-col max-h-[90vh]"
+          :style="{ maxWidth: sizeStyle }"
         >
-          <div class="flex items-center justify-between mb-4">
+          <!-- Header -->
+          <div class="flex items-center justify-between p-6 pb-4 shrink-0">
             <h3 v-if="title" class="text-lg font-semibold leading-6 text-foreground">
               {{ title }}
             </h3>
@@ -62,11 +73,13 @@ onUnmounted(() => {
             </button>
           </div>
 
-          <div class="mt-2">
+          <!-- Scrollable body -->
+          <div class="overflow-y-auto px-6 py-2 flex-1">
             <slot />
           </div>
 
-          <div v-if="$slots.footer" class="mt-6 flex flex-row-reverse gap-2">
+          <!-- Footer -->
+          <div v-if="$slots.footer" class="px-6 py-4 shrink-0 flex flex-row-reverse gap-2">
             <slot name="footer" />
           </div>
         </div>
