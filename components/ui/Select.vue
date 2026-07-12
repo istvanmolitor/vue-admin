@@ -60,8 +60,10 @@ const handleChange = (event: Event): void => {
   const target = event.target as HTMLSelectElement
   const value = target.value
 
-  if (value === '' && props.clearable) {
-    emit('update:modelValue', null)
+  if (value === '') {
+    if (props.clearable) {
+      emit('update:modelValue', null)
+    }
     return
   }
 
