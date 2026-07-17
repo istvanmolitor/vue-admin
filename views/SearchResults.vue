@@ -57,11 +57,9 @@ const typeIcon: Record<string, string> = {
 </script>
 
 <template>
-  <AdminLayout>
+  <AdminLayout page-title="Keresési találatok">
     <div class="space-y-6">
-      <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-        <h1 class="text-2xl font-bold tracking-tight">Keresési találatok</h1>
-
+      <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-end">
         <form class="flex items-center gap-2" @submit.prevent="onSubmit">
           <div class="relative">
             <Icon
