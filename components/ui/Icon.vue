@@ -1,6 +1,45 @@
 <script setup lang="ts">
-import { computed } from 'vue'
-import * as LucideIcons from 'lucide-vue-next'
+import { computed, defineAsyncComponent, type Component } from 'vue'
+
+// Per-icon dynamic imports keep only the icons actually rendered in the
+// bundle, instead of pulling in the whole lucide-vue-next icon set. The
+// name-to-file map is loaded lazily too, so it ships as its own chunk
+// rather than bloating the shared app bundle.
+const iconModules = import.meta.glob(
+  '../../../../../../node_modules/lucide-vue-next/dist/esm/icons/*.js',
+  { import: 'default' }
+) as Record<string, () => Promise<Component>>
+
+const iconLoaderByFile = new Map<string, () => Promise<Component>>()
+for (const [path, loader] of Object.entries(iconModules)) {
+  iconLoaderByFile.set(path.split('/').pop()!, loader)
+}
+
+const iconMapPromise: Promise<Record<string, string>> = import('../../lib/lucide-icon-map.json').then(
+  (m) => (m as { default: Record<string, string> }).default
+)
+
+const asyncIconCache = new Map<string, Component>()
+
+const loadIcon = (name: string): Component => {
+  const cached = asyncIconCache.get(name)
+  if (cached) {
+    return cached
+  }
+
+  const component = defineAsyncComponent(async () => {
+    const map = await iconMapPromise
+    const file = map[name]
+    if (!file) {
+      console.warn(`Icon "${name}" not found in lucide-vue-next`)
+    }
+    const loader = (file && iconLoaderByFile.get(file)) || iconLoaderByFile.get(map.HelpCircle)!
+    return loader()
+  })
+
+  asyncIconCache.set(name, component)
+  return component
+}
 
 const props = defineProps<{
   name: string | any
@@ -65,14 +104,8 @@ const iconAliases: Record<string, string> = {
 
 const icon = computed(() => {
   if (typeof props.name !== 'string') return props.name
-  let iconName = props.name
-  iconName = iconAliases[iconName] ?? iconName
-  const iconComponent = (LucideIcons as Record<string, any>)[iconName]
-  if (!iconComponent) {
-    console.warn(`Icon "${iconName}" not found in lucide-vue-next`)
-    return LucideIcons.HelpCircle
-  }
-  return iconComponent
+  const iconName = iconAliases[props.name] ?? props.name
+  return loadIcon(iconName)
 })
 </script>
 
