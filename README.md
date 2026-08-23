@@ -4,14 +4,13 @@ A Vue 3 admin UI component library with layout and UI components.
 
 ## Installation
 
-```bash
-npm install vue-admin
-```
+This package is not published to npm. It is registered as `@molitor/vue-admin` and resolved via
+the `@admin` alias configured in the root `vite.config.js` and `tsconfig.json`
+(`resources/js/packages/vue-admin`). Import it as `@admin` (e.g. `@admin/lib/AdminMenuBuilder`),
+never by npm package name.
 
-This will also install the required peer dependencies:
-- `clsx`
-- `tailwind-merge`
-- `class-variance-authority`
+It depends on `clsx`, `tailwind-merge`, and `class-variance-authority`, which are already listed
+in the root `package.json`.
 
 ## Peer Dependencies
 
@@ -21,7 +20,7 @@ Make sure you have `vue` installed in your project:
 npm install vue
 ```
 
-9## Routing
+## Routing
 
 The admin package provides routes with `/admin` prefix for all admin pages:
 
